@@ -13,7 +13,6 @@ function App() {
       <section id="center">
         <div className="hero">
           <img src={catImg} className="base" width="170" height="179" alt="" />
-         
         </div>
         <div>
           <h1>Mačke</h1>
