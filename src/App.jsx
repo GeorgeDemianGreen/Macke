@@ -17,9 +17,9 @@ function App() {
         </div>
         <div>
           <h1>Mačke</h1>
-          <h1>Katalog najslađih mačaka</h1>
+          <h2>Katalog najslađih mačaka</h2>
           <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+            Mjesto na kojem glasaju pravi ljubitelji maca
           </p>
         </div>
         <button
@@ -27,7 +27,7 @@ function App() {
           className="counter"
           onClick={() => setCount((count) => count + 1)}
         >
-          Count is {count}
+          Broj maženja {count}
         </button>
       </section>
 
