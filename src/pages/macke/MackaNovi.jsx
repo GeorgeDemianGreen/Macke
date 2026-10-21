@@ -18,7 +18,11 @@ export default function MackaNovi() {
         e.preventDefault() // nemoj odraditi submit
         const podaci = new FormData(e.target)
         dodaj({
-            naziv: podaci.get('naziv')
+            naziv: podaci.get('naziv'),
+            debljina: parseInt(podaci.get('debljina')),
+            boja: podaci.get('boja'),
+            dlaka: podaci.get('dlaka'),
+            mazna: podaci.get('mazna') 
         })
     }
 
@@ -35,6 +39,27 @@ export default function MackaNovi() {
                     <Form.Label>Naziv</Form.Label>
                     <Form.Control type="text" name="naziv" required />
                 </Form.Group>
+
+                 <Form.Group controlId="debljina">
+                    <Form.Label>Debljina</Form.Label>
+                    <Form.Control type="number" name="debljina" step={1} />
+                </Form.Group>
+
+                 <Form.Group controlId="boja">
+                    <Form.Label>Boja</Form.Label>
+                    <Form.Control type="text" name="boja" step={1} />
+                </Form.Group>
+
+                 <Form.Group controlId="dlaka">
+                    <Form.Label>Dlaka</Form.Label>
+                    <Form.Control type="text" name="dlaka" step={1} />
+                </Form.Group>
+
+                 <Form.Group controlId="mazna">
+                    <Form.Label>Mazna</Form.Label>
+                    <Form.Control type="text" name="mazna" step={1} />
+                </Form.Group>
+
 
                
 

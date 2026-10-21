@@ -32,7 +32,12 @@ export default function MackaPromjena() {
         e.preventDefault() // nemoj odraditi submit
         const podaci = new FormData(e.target)
         promijeni({
-            naziv: podaci.get('naziv')
+            naziv: podaci.get('naziv'),
+            debljina: parseInt(podaci.get('debljina')),
+            boja: podaci.get('boja'),
+            dlaka: podaci.get('dlaka'),
+            mazna: podaci.get('mazna'),
+            aktivan: aktivan
         })
     }
 
@@ -51,6 +56,29 @@ export default function MackaPromjena() {
                     defaultValue={macka.naziv}/>
                 </Form.Group>
 
+                 <Form.Group controlId="debljina">
+                    <Form.Label>Debljina</Form.Label>
+                    <Form.Control type="number" name="debljina" required 
+                    defaultValue={macka.debljina}/>
+                </Form.Group>
+
+                <Form.Group controlId="boja">
+                    <Form.Label>Boja</Form.Label>
+                    <Form.Control type="text" name="boja" required 
+                    defaultValue={macka.boja}/>
+                </Form.Group>
+
+                <Form.Group controlId="dlaka">
+                    <Form.Label>Dlaka</Form.Label>
+                    <Form.Control type="text" name="dlaka" required 
+                    defaultValue={macka.dlaka}/>
+                </Form.Group>
+
+                <Form.Group controlId="mazna">
+                    <Form.Label>Mazna</Form.Label>
+                    <Form.Control type="text" name="mazna" required 
+                    defaultValue={macka.mazna}/>
+                </Form.Group>
 
                 <Row className="mt-4">
                     <Col>
