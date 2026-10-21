@@ -1,120 +1,32 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import catImg from './assets/cat.png'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
+import { Container } from 'react-bootstrap'
+import Izbornik from './components/Izbornik'
+import { IME_APLIKACIJE, RouteNames } from './constants'
+import { Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import MackaPregled from './pages/macke/MackaPregled'
+import MackaNovi from './pages/macke/MackaNovi'
+import MackaPromjena from './pages/macke/MackaPromjena'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={catImg} className="base" width="170" height="179" alt="" />
-        </div>
-        <div>
-          <h1>Mačke</h1>
-          <h2>Katalog najslađih mačaka</h2>
-          <p>
-            Mjesto na kojem glasaju pravi ljubitelji maca
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Broj maženja {count}
-        </button>
-      </section>
+      <Container>
+        <Izbornik />
+        <Container className='app'>
+          <Routes>
+            <Route path={RouteNames.HOME} element={<Home />} />
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+            <Route path={RouteNames.MACKE} element={<MackaPregled />} />
+            <Route path={RouteNames.MACKE_DODAJ} element={<MackaNovi />} />
+            <Route path={RouteNames.MACKE_PROMJENA} element={<MackaPromjena />} />
+          </Routes>
+        </Container>
+        <hr />
+        &copy; {IME_APLIKACIJE}
+      </Container>
     </>
   )
 }
