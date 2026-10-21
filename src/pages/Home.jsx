@@ -15,9 +15,6 @@ export default function Home(){
                Dobrodošli na {IME_APLIKACIJE}
             </p>
 
-            <div style={{maxWidth: '300px', margin: 'auto'}}>
-               Nešto
-            </div>
         </>
     )
 }

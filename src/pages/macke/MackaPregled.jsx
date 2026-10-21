@@ -39,12 +39,16 @@ export default function MackaPregled() {
         <>
             <Link to={RouteNames.MACKE_DODAJ}
             className="btn btn-success w-100 my-3">
-                Dodavanje novog mačke
+                Dodavanje nove mačke
             </Link>
             <Table hover striped bordered>
                 <thead>
                     <tr>
                         <th>Naziv</th>
+                        <th>Debljina</th>
+                        <th>Boja</th>
+                        <th>Dlaka</th>
+                        <th>Mazna</th>
                         <th>Akcija</th>
                     </tr>
                 </thead>
@@ -54,6 +58,18 @@ export default function MackaPregled() {
                             <td className="lead">
                                 {macka.naziv}
                             </td>
+                            <td className="lead">
+                                {macka.debljina}
+                                </td>
+                            <td className="lead">
+                                {macka.boja}
+                                </td>
+                            <td className="lead">
+                                {macka.dlaka}
+                                </td>
+                             <td className="lead">
+                                {macka.mazna}
+                                </td>
                             <td>
                                 <Button onClick={()=>{navigate(`/macke/${macka.sifra}`)}}>
                                     Promjena
