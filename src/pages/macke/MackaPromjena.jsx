@@ -36,8 +36,7 @@ export default function MackaPromjena() {
             debljina: parseInt(podaci.get('debljina')),
             boja: podaci.get('boja'),
             dlaka: podaci.get('dlaka'),
-            mazna: podaci.get('mazna'),
-            aktivan: aktivan
+            mazna: podaci.get('mazna')
         })
     }
 
