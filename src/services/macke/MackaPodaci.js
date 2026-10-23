@@ -1,6 +1,15 @@
+import miniSlika from '../../assets/minifaca.jpg'; 
+import andaSlika from '../../assets/andafaca.jpg';
+import minkaSlika from'../../assets/minkafaca.jpg';
+import pabloSlika from'../../assets/pablofaca.jpg';
+import dudaSlika from'../../assets/dudafaca.jpg';
+import buhtlicaSlika from'../../assets/buhtlicafaca.png';
+import pjegicaSlika from'../../assets/pjegicafaca.png'
+
 export const macke = [
     {
         sifra: 1,
+        slika: miniSlika,
         naziv: 'Mini',
         debljina: 10,
         boja: 'Crna',
@@ -9,6 +18,7 @@ export const macke = [
     },
     {
         sifra: 2,
+        slika: andaSlika,
         naziv: 'Anđelka',
         debljina: 5,
         boja: 'Bijela',
@@ -17,6 +27,7 @@ export const macke = [
     },
     {
         sifra: 3,
+        slika: minkaSlika,
         naziv: 'Minka',
         debljina: 3,
         boja: 'Kornjačevina',
@@ -25,6 +36,7 @@ export const macke = [
     },
     {
         sifra: 4,
+        slika: pabloSlika,
         naziv: 'Pablo',
         debljina: 10,
         boja: 'Prugastosmeđa',
@@ -33,6 +45,7 @@ export const macke = [
     },
     {
         sifra: 5,
+        slika: buhtlicaSlika,
         naziv: 'Buhtlica',
         debljina: 10,
         boja: 'Kornjačevina',
@@ -41,6 +54,7 @@ export const macke = [
     },
     {
         sifra: 6,
+        slika: pjegicaSlika,
         naziv: 'Pjegica',
         debljina: 4,
         boja: 'Smeđa s efektom',
@@ -49,6 +63,7 @@ export const macke = [
     },
     {
         sifra: 7,
+        slika: dudaSlika,
         naziv: 'Duda',
         debljina: 100,
         boja: 'Bijelo-siva',

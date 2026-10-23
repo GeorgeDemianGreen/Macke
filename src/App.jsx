@@ -22,6 +22,12 @@ function App() {
             <Route path={RouteNames.MACKE} element={<MackaPregled />} />
             <Route path={RouteNames.MACKE_DODAJ} element={<MackaNovi />} />
             <Route path={RouteNames.MACKE_PROMJENA} element={<MackaPromjena />} />
+
+
+            <Route path={RouteNames.GLASANJE} element={<GlasanjePregled />} />
+            <Route path={RouteNames.GLASANJE_DODAJ} element={<GlasanjeNovi />} />
+            <Route path={RouteNames.GLASANJE_PROMJENA} element={<GlasanjePromjena />} />
+
           </Routes>
         </Container>
         <hr />

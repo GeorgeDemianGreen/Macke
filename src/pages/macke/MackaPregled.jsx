@@ -44,6 +44,7 @@ export default function MackaPregled() {
             <Table hover striped bordered>
                 <thead>
                     <tr>
+                        <th>Slika</th>
                         <th>Naziv</th>
                         <th>Debljina</th>
                         <th>Boja</th>
@@ -55,6 +56,12 @@ export default function MackaPregled() {
                 <tbody>
                     {macke && macke.map((macka) => (
                         <tr key={macka.sifra}>
+                            <td className="lead">
+                                <img src={macka.slika} 
+                                width="80"
+                                style={{ display: "block", margin: "0 auto" }}
+                                 />
+                            </td>
                             <td className="lead">
                                 {macka.naziv}
                             </td>
