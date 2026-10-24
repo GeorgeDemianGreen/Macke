@@ -6,69 +6,49 @@ import dudaSlika from'../../assets/dudafaca.jpg';
 import buhtlicaSlika from'../../assets/buhtlicafaca.png';
 import pjegicaSlika from'../../assets/pjegicafaca.png'
 
-export const macke = [
+
+export const glasanje = [
     {
         sifra: 1,
         slika: miniSlika,
         naziv: 'Mini',
-        debljina: 10,
-        boja: 'Crna',
-        dlaka: 'Duga',
-        mazna: 'Veoma'
+        glasanje: ''
     },
     {
         sifra: 2,
         slika: andaSlika,
         naziv: 'Anđelka',
-        debljina: 5,
-        boja: 'Bijela',
-        dlaka: 'Duga',
-        mazna: 'Ponekad'
+        glasanje: ''
     },
     {
         sifra: 3,
         slika: minkaSlika,
         naziv: 'Minka',
-        debljina: 3,
-        boja: 'Kornjačevina',
-        dlaka: 'Kratka',
-        mazna: 'Samo probaj'
+        glasanje: ''
     },
     {
         sifra: 4,
         slika: pabloSlika,
         naziv: 'Pablo',
-        debljina: 10,
-        boja: 'Prugastosmeđa',
-        dlaka: 'Kratka',
-        mazna: 'Kako prema kome'
+        glasanje: ''
     },
     {
         sifra: 5,
         slika: buhtlicaSlika,
         naziv: 'Buhtlica',
-        debljina: 10,
-        boja: 'Kornjačevina',
-        dlaka: 'Kratka',
-        mazna: 'Veoma'
+        glasanje: ''
     },
     {
         sifra: 6,
         slika: pjegicaSlika,
         naziv: 'Pjegica',
-        debljina: 4,
-        boja: 'Smeđa s efektom',
-        dlaka: 'Poluduga',
-        mazna: 'Ne'
+        glasanje: ''
     },
     {
         sifra: 7,
         slika: dudaSlika,
         naziv: 'Duda',
-        debljina: 100,
-        boja: 'Bijelo-siva',
-        dlaka: 'Kratka',
-        mazna: 'Samo prema vlasnici'
+        glasanje: ''
     },
 ]
 

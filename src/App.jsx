@@ -8,6 +8,9 @@ import Home from './pages/Home'
 import MackaPregled from './pages/macke/MackaPregled'
 import MackaNovi from './pages/macke/MackaNovi'
 import MackaPromjena from './pages/macke/MackaPromjena'
+import GlasanjePregled from './pages/glasanje/glasanjePregled'
+import GlasanjeNovi from './pages/glasanje/GlasanjeNovi'
+import GlasanjePromjena from './pages/glasanje/GlasanjePromjena'
 
 function App() {
 
