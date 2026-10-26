@@ -8,9 +8,6 @@ import Home from './pages/Home'
 import MackaPregled from './pages/macke/MackaPregled'
 import MackaNovi from './pages/macke/MackaNovi'
 import MackaPromjena from './pages/macke/MackaPromjena'
-import GlasanjePregled from './pages/glasanje/glasanjePregled'
-import GlasanjeNovi from './pages/glasanje/GlasanjeNovi'
-import GlasanjePromjena from './pages/glasanje/GlasanjePromjena'
 
 function App() {
 
@@ -27,9 +24,6 @@ function App() {
             <Route path={RouteNames.MACKE_PROMJENA} element={<MackaPromjena />} />
 
 
-            <Route path={RouteNames.GLASANJE} element={<GlasanjePregled />} />
-            <Route path={RouteNames.GLASANJE_DODAJ} element={<GlasanjeNovi />} />
-            <Route path={RouteNames.GLASANJE_PROMJENA} element={<GlasanjePromjena />} />
 
           </Routes>
         </Container>

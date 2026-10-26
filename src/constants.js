@@ -9,7 +9,4 @@ export const RouteNames = {
     MACKE_PROMJENA: '/macke/:sifra',
     
 
-    GLASANJE: '/glasanje',
-    GLASANJE_DODAJ: '/glasanje/novi',
-    GLASANJE_PROMJENA: '/glasanje/:sifra',
 }

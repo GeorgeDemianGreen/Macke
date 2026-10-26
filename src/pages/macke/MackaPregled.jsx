@@ -33,6 +33,13 @@ export default function MackaPregled() {
         ucitajMacke()
     }
 
+    function glasanje(macka){
+        //console.log(macka)
+        macka.brojGlasova++
+        MackaService.promijeni(macka.sifra, macka)
+        ucitajMacke()
+    }
+
     
 
     return (
@@ -52,6 +59,7 @@ export default function MackaPregled() {
                 <thead>
                     <tr>
                         <th>Slika</th>
+                        <th>Broj glasova</th>
                         <th>Naziv</th>
                         <th>Debljina</th>
                         <th>Boja</th>
@@ -68,6 +76,13 @@ export default function MackaPregled() {
                                 width="80"
                                 style={{ display: "block", margin: "0 auto" }}
                                  />
+                            </td>
+                            <td>
+                                {macka.brojGlasova}
+                                <p
+                                style={{cursor: 'pointer'}}
+                                onClick={()=>glasanje(macka)}
+                                >❤️</p>
                             </td>
                             <td className="lead">
                                 {macka.naziv}
