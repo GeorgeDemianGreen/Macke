@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rozo dugme za glasanje</title>
+
+  <style>
+    .glasaj-dugme {
+      background: linear-gradient(135deg, #ff85b3, #ff4f96);
+      color: white;
+      border: 2px solid #ffb6d2;
+      border-radius: 30px;
+      padding: 14px 28px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px #ff85b366;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .glasaj-dugme:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 20px #ff4f9680;
+    }
+
+    .glasaj-dugme:active {
+      transform: scale(0.95);
+    }
+
+    #poruka {
+      color: #ff4f96;
+      font-family: sans-serif;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="glasaj-dugme" id="glasaj">
+    ♡ Glasaj 🐾
+  </button>
+
+  <p id="poruka"></p>
+
+  <script>
+    const dugme = document.getElementById("glasaj");
+    const poruka = document.getElementById("poruka");
+
+    let glasano = false;
+
+    dugme.addEventListener("click", function () {
+      if (!glasano) {
+        glasano = true;
+        dugme.innerHTML = "♥ Glasano! 🐾";
+        poruka.textContent = "Hvala na glasu! 💗";
+      } else {
+        glasano = false;
+        dugme.innerHTML = "♡ Glasaj 🐾";
+        poruka.textContent = "";
+      }
+    });
+  </script>
+
+</body>
+</html>

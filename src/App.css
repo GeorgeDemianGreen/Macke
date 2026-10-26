@@ -5,3 +5,9 @@
 .desno{
   text-align: right;
 }
+table tbody tr.macka-red > td {
+    background-color: #faabcb !important;
+}
+table tbody tr.glasanje-red > td {
+    background-color: #faabcb !important;
+}

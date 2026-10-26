@@ -41,7 +41,14 @@ export default function MackaPregled() {
             className="btn btn-success w-100 my-3">
                 Dodavanje nove mačke
             </Link>
-            <Table hover striped bordered>
+            {/* <Table hover striped bordered> */}
+            <Table
+            hover
+            bordered
+            style={{
+            backgroundColor: "#581831"
+    }}
+>
                 <thead>
                     <tr>
                         <th>Slika</th>
@@ -53,9 +60,9 @@ export default function MackaPregled() {
                         <th>Akcija</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody> 
                     {macke && macke.map((macka) => (
-                        <tr key={macka.sifra}>
+                        <tr key={macka.sifra} className="macka-red">
                             <td className="lead">
                                 <img src={macka.slika} 
                                 width="80"
