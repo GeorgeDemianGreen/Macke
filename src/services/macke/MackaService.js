@@ -21,11 +21,37 @@ async function dodaj(macka){
     macke.push(macka)
 }
 
+import { DATA_SOURCE } from "../../constants"
+import MackaServiceLocalStorage from "./MackaServiceLocalStorage"
+import MackaServiceMemorija from "./MackaServiceMemorija"
+
+
+let Servis = null
+
+switch(DATA_SOURCE){
+    case 'memorija':
+        Servis = MackaServiceMemorija
+        break
+    case 'localStorage':
+        Servis = MackaServiceLocalStorage
+        break
+    default:
+        Servis = null
+}
+
 // 3/4 od CRUD: Update
 
 async function promijeni(sifra, macka){
     const index = nadiIndex(sifra)
     macke[index] = {...macke[index], ...macka}
+    }
+
+    const PrazanServis = {
+      get: async () => ({data: []}),
+        getBySifra: async (sifra) => ({data: {}}),
+        dodaj: async (smjer) => {console.error('Servis nije implementiran')},
+      promijeni: async (sifra, smjer) => {console.error('Servis nije implementiran')},
+      obrisi: async (sifra) => {console.error('Servis nije implementiran')}
 }
 
 function nadiIndex(sifra){
@@ -37,6 +63,7 @@ async function obrisi(sifra){
     const index = nadiIndex(sifra)
     macke.splice(index,1)
 }
+const AktivniServis = Servis || PrazanServis
 
 
 
@@ -45,5 +72,10 @@ export default{
     getBySifra,
     dodaj,
     promijeni,
-    obrisi
+    obrisi,
+    get: () => AktivniServis.get(),
+    getBySifra: (sifra) => AktivniServis.getBySifra(sifra),
+    dodaj: (smjer) => AktivniServis.dodaj(smjer),
+    promijeni: (sifra,smjer) => AktivniServis.promijeni(sifra,smjer),
+    obrisi: (sifra) => AktivniServis.obrisi(sifra)
 }

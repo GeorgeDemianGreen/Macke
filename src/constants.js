@@ -8,5 +8,7 @@ export const RouteNames = {
     MACKE_DODAJ: '/macke/novi',
     MACKE_PROMJENA: '/macke/:sifra',
     
-
 }
+
+// memorija, localStorage, firebase
+export const DATA_SOURCE = 'localStorage'
