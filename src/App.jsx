@@ -23,8 +23,6 @@ function App() {
             <Route path={RouteNames.MACKE_DODAJ} element={<MackaNovi />} />
             <Route path={RouteNames.MACKE_PROMJENA} element={<MackaPromjena />} />
 
-
-
           </Routes>
         </Container>
         <hr />

@@ -1,4 +1,3 @@
-import { macke } from "./MackaPodaci"
 
 const STORAGE_KEY='macke'
 
@@ -22,24 +21,24 @@ async function getBySifra(sifra){
 }
 
 
-async function dodaj(smjer){
+async function dodaj(macka){
     const macke = dohvatiSveIzStorage()
     if(macke.length === 0){
-        smjer.sifra = 1
+        macka.sifra = 1
     }else{
         const maxSifra = Math.max(...macke.map(s => s.sifra))
-        smjer.sifra = maxSifra + 1
+        macka.sifra = maxSifra + 1
     }
-    macke.push(smjer)
+    macke.push(macka)
     spremiUStorage(macke)
 }
 
 
 
-async function promijeni(sifra, smjer){
+async function promijeni(sifra, macka){
     const macke = dohvatiSveIzStorage()
     const index = macke.findIndex(s => s.sifra === parseInt(sifra))
-    macke[index] = {...macke[index], ...smjer}
+    macke[index] = {...macke[index], ...macka}
     spremiUStorage(macke)
 }
 
