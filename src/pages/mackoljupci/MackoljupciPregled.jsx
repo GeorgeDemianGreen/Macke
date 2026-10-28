@@ -39,7 +39,7 @@ export default function MackoljupciPregled() {
 
     return (
         <>
-            <Link to={RouteNames.mackoljupci_DODAJ}
+            <Link to={RouteNames.MACKOLJUPCI_DODAJ}
             className="btn btn-success w-100 my-3">
                 Dodavanje novog mačkoljupca
             </Link>
@@ -47,15 +47,13 @@ export default function MackoljupciPregled() {
             <Table
             hover
             bordered
-            style={{
-            backgroundColor: "#581831"
-    }}
 >
                 <thead>
                     <tr>
                         <th>Slika</th>
                         <th>Ime</th>
                         <th>Omiljena mačka</th>
+                        <th>Akcija</th>
                     </tr>
                 </thead>
                 <tbody> 

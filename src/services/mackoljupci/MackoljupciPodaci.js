@@ -4,46 +4,53 @@ export const mackoljupci = [
         sifra: 1,
         slika: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII',
         ime: 'Pero',
-        omiljenamacka: 'Mini'
+        prezime: '',
+        omiljenamacka: 4
     },
     {
         sifra: 2,
         slika: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII',
         ime: 'Marko',
-        omiljenamacka: 'Duda'
+        prezime: '',
+        omiljenamacka: 2
     },
     {
         sifra: 3,
         slika: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII',
         ime: 'Stevo',
-        omiljenamacka: 'Anđelka'
+        prezime: '',
+        omiljenamacka: 4
         
     },
     {
         sifra: 4,
         slika: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII',
         ime: 'Strizivoj',
-        omiljenamacka: 'Pjegica',
+        prezime: '',
+        omiljenamacka: 2
     }, 
     {
         sifra: 5,
         slika: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII',
         ime: 'Jovana',
-        omiljenamacka: 'Anđelka',
+        prezime: '',
+        omiljenamacka: 1
         
     },
     {
         sifra: 6,
         slika: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII',
         ime: 'Petra',
-        omiljenamacka: 'Pjegica'
+        prezime: '',
+        omiljenamacka: 4
         
     },
     {
         sifra: 7,
         slika: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII',
         ime: 'Tanja',
-        omiljenamacka: 'Duda'
+        prezime: '',
+        omiljenamacka: 3
         
     },
 ]
