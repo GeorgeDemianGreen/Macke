@@ -1,6 +1,6 @@
-import { macke } from "./MackoljupciPodaci"
+import { mackoljupci } from "./MackoljupciPodaci"
 
-const STORAGE_KEY='macke'
+const STORAGE_KEY='mackoljupci'
 
 function dohvatiSveIzStorage(){
     const podaci = localStorage.getItem(STORAGE_KEY)
@@ -13,7 +13,7 @@ function spremiUStorage(podaci){
 
 async function get(){
     const mackoljupci = dohvatiSveIzStorage()
-    return {data: [...macke]}
+    return {data: [...mackoljupci]}
 }
 
 async function getBySifra(sifra){
@@ -31,7 +31,7 @@ async function dodaj(smjer){
         smjer.sifra = maxSifra + 1
     }
     mackoljupci.push(smjer)
-    spremiUStorage(macke)
+    spremiUStorage(mackoljupci)
 }
 
 
@@ -46,9 +46,9 @@ async function promijeni(sifra, smjer){
 
 
 async function obrisi(sifra){
-    let macke = dohvatiSveIzStorage()
-    macke = macke.filter(s => s.sifra !== parseInt(sifra))
-    spremiUStorage(macke)
+    let mackoljupci = dohvatiSveIzStorage()
+    mackoljupci = mackoljupci.filter(s => s.sifra !== parseInt(sifra))
+    spremiUStorage(mackoljupci)
 }
 
 

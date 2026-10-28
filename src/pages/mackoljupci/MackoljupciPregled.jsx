@@ -19,7 +19,7 @@ export default function MackoljupciPregled() {
     }
 
     useEffect(() => {
-        //console.log('Došao na pregled Mackoljupciova')
+        //console.log('Dobrodošao na pregled Mackoljubaca')
         ucitajmackoljupci()
     }, [])
 
@@ -33,12 +33,7 @@ export default function MackoljupciPregled() {
         ucitajmackoljupci()
     }
 
-    function glasanje(Mackoljupci){
-        //console.log(Mackoljupci)
-        Mackoljupci.brojGlasova++
-        MackoljupciService.promijeni(Mackoljupci.sifra, Mackoljupci)
-        ucitajmackoljupci()
-    }
+
 
     
 
@@ -46,7 +41,7 @@ export default function MackoljupciPregled() {
         <>
             <Link to={RouteNames.mackoljupci_DODAJ}
             className="btn btn-success w-100 my-3">
-                Dodavanje nove mačke
+                Dodavanje novog mačkoljupca
             </Link>
             {/* <Table hover striped bordered> */}
             <Table
@@ -59,13 +54,8 @@ export default function MackoljupciPregled() {
                 <thead>
                     <tr>
                         <th>Slika</th>
-                        <th>Broj glasova</th>
-                        <th>Naziv</th>
-                        <th>Debljina</th>
-                        <th>Boja</th>
-                        <th>Dlaka</th>
-                        <th>Mazna</th>
-                        <th>Akcija</th>
+                        <th>Ime</th>
+                        <th>Omiljena mačka</th>
                     </tr>
                 </thead>
                 <tbody> 
@@ -77,27 +67,11 @@ export default function MackoljupciPregled() {
                                 style={{ display: "block", margin: "0 auto" }}
                                  />
                             </td>
-                            <td>
-                                {Mackoljupci.brojGlasova}
-                                <p
-                                style={{cursor: 'pointer'}}
-                                onClick={()=>glasanje(Mackoljupci)}
-                                >❤️</p>
+                            <td className="lead">
+                                {Mackoljupci.ime}
                             </td>
                             <td className="lead">
-                                {Mackoljupci.naziv}
-                            </td>
-                            <td className="lead">
-                                {Mackoljupci.debljina}
-                                </td>
-                            <td className="lead">
-                                {Mackoljupci.boja}
-                                </td>
-                            <td className="lead">
-                                {Mackoljupci.dlaka}
-                                </td>
-                             <td className="lead">
-                                {Mackoljupci.mazna}
+                                {Mackoljupci.omiljenamacka}
                                 </td>
                             <td>
                                 <Button onClick={()=>{navigate(`/mackoljupci/${Mackoljupci.sifra}`)}}>

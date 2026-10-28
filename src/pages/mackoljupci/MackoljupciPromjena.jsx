@@ -32,11 +32,9 @@ export default function MackoljupciPromjena() {
         e.preventDefault() // nemoj odraditi submit
         const podaci = new FormData(e.target)
         promijeni({
-            naziv: podaci.get('naziv'),
-            debljina: parseInt(podaci.get('debljina')),
-            boja: podaci.get('boja'),
-            dlaka: podaci.get('dlaka'),
-            mazna: podaci.get('mazna')
+            slika: podaci.get('slika'),
+            ime: podaci.get('ime'),
+            omiljenamacka: podaci.get('omiljenamacka'),
         })
     }
 
@@ -49,34 +47,22 @@ export default function MackoljupciPromjena() {
 
             <Form onSubmit={obradiSubmit}>
 
-                <Form.Group controlId="naziv">
-                    <Form.Label>Naziv</Form.Label>
-                    <Form.Control type="text" name="naziv" required 
-                    defaultValue={mackoljupci.naziv}/>
+                <Form.Group controlId="slika">
+                    <Form.Label>Slika</Form.Label>
+                    <Form.Control type="text" name="slika" required 
+                    defaultValue={mackoljupci.slika}/>
                 </Form.Group>
 
-                 <Form.Group controlId="debljina">
-                    <Form.Label>Debljina</Form.Label>
-                    <Form.Control type="number" name="debljina" required 
-                    defaultValue={mackoljupci.debljina}/>
+                 <Form.Group controlId="ime">
+                    <Form.Label>Ime</Form.Label>
+                    <Form.Control type="text" name="ime" required 
+                    defaultValue={mackoljupci.ime}/>
                 </Form.Group>
 
-                <Form.Group controlId="boja">
-                    <Form.Label>Boja</Form.Label>
-                    <Form.Control type="text" name="boja" required 
-                    defaultValue={mackoljupci.boja}/>
-                </Form.Group>
-
-                <Form.Group controlId="dlaka">
-                    <Form.Label>Dlaka</Form.Label>
-                    <Form.Control type="text" name="dlaka" required 
-                    defaultValue={mackoljupci.dlaka}/>
-                </Form.Group>
-
-                <Form.Group controlId="mazna">
-                    <Form.Label>Mazna</Form.Label>
-                    <Form.Control type="text" name="mazna" required 
-                    defaultValue={mackoljupci.mazna}/>
+                <Form.Group controlId="omiljenamacka">
+                    <Form.Label>Omiljena mačka</Form.Label>
+                    <Form.Control type="text" name="omiljenamacka" required 
+                    defaultValue={mackoljupci.omiljenamacka}/>
                 </Form.Group>
 
                 <Row className="mt-4">

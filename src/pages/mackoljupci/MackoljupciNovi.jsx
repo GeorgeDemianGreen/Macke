@@ -1,16 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import MackaService from "../../services/macke/MackaService";
+import MackoljupciService from "../../services/mackoljupci/MackoljupciService";
 
 
-export default function MackaNovi() {
+export default function MackoljupciNovi() {
 
     const navigate = useNavigate()
 
-    async function dodaj(macka){
-        await MackaService.dodaj(macka).then(()=>{
-            navigate(RouteNames.MACKE)
+    async function dodaj(mackoljupci){
+        await MackoljupciService.dodaj(mackoljupci).then(()=>{
+            navigate(RouteNames.MACKOLJUPCI)
         })
     }
 
@@ -18,11 +18,10 @@ export default function MackaNovi() {
         e.preventDefault() // nemoj odraditi submit
         const podaci = new FormData(e.target)
         dodaj({
-            naziv: podaci.get('naziv'),
-            debljina: parseInt(podaci.get('debljina')),
-            boja: podaci.get('boja'),
-            dlaka: podaci.get('dlaka'),
-            mazna: podaci.get('mazna') 
+            slika: podaci.get('slika'),
+            ime:podaci.get('ime'),
+            omiljenamacka: podaci.get('omiljenamacka'),
+            
         })
     }
 
@@ -30,7 +29,7 @@ export default function MackaNovi() {
     return (
         <>
             <h3>
-                Dodavanje nove mačke
+                Dodavanje novog mačkoljupca
             </h3>
 
             <Form onSubmit={obradiSubmit}>
