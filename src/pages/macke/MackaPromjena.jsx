@@ -44,7 +44,7 @@ export default function MackaPromjena() {
     return (
         <>
             <h3>
-                Promjena podatke o mački
+                Promjena podataka o mački
             </h3>
 
             <Form onSubmit={obradiSubmit}>

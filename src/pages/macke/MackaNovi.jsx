@@ -66,7 +66,7 @@ export default function MackaNovi() {
                 <Row className="mt-4">
                     <Col>
                         <Link to={RouteNames.MACKE}
-                        className="btn btn-danger">
+                        className="btn btn-danger pozadina">
                             Odustani
                         </Link>
                     </Col>

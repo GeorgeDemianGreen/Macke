@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
 .app{
   min-height: 500px;
 }
@@ -8,17 +10,82 @@
 
 
 body{
-  background-color: #ebe2e6;
-  
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  background-image: url("../src/assets/pozadinasape.png");
+  background-repeat: repeat;
+  background-size: 400px;
+}
+.navbar-brand{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  color: white
+}
+.navbar-brand:hover{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  color: rgb(245, 82, 171)
 }
 
+.navbar-brand:focus{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  color: rgb(255, 255, 255)
+
+}
+
+.nav-link{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  color: white
+}
+
+.nav-link:hover{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  color: rgb(245, 82, 171)
+}
+.nav-link:focus{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  color: rgb(255, 255, 255)
+}
+.basic-navbar-nav{
+    font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  color: white
+}
+.basic-navbar-nav:hover{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  color: rgb(245, 82, 171)
+}
+.basic-navbar-nav:focus{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  color: rgb(255, 255, 255)
+}
+
+
 .pozadina{
+  background-color: #fdb8d8;
+  color: #d66099;
+  border-color: #d51f77;
+}
+
+.pozadina:hover{
+  background-color: #e9bfd3;
+  color: #d51f77;
+  border-color: #880746;
+}
+
+.btn{
   background-color: #e9cdda;
   color: #ec7bb2;
   border-color: #d51f77;
 }
 
-.pozadina:hover{
+.btn:hover{
   background-color: #e9bfd3;
   color: #d51f77;
   border-color: #880746;
@@ -32,5 +99,6 @@ body{
 }
 
 .bg-body-tertiary, .dropdown-menu {
-    background-color: #e9cdda !important;
+    background-color: #faaed1 !important;
+    border-color: #880746;
 }
