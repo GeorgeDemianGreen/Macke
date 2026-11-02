@@ -21,15 +21,20 @@ export default function Izbornik() {
                     <Nav className="me-auto">
                         <Nav.Link
                         onClick={()=>{navigate(RouteNames.HOME)}}
+                        onMouseLeave={(e)=>e.currentTarget.blur()}
                         >Početna</Nav.Link>
                         <NavDropdown title="Programi" id="basic-nav-dropdown">
 
                             <NavDropdown.Item
                             onClick={()=>navigate(RouteNames.MACKE)}
+                            onMouseLeave={(e)=>e.currentTarget.blur()}
+                            style={{color: '#d66099', fontWeight: 'bold'}}
                             >Mačke</NavDropdown.Item>
 
                             <NavDropdown.Item
                             onClick={()=>navigate(RouteNames.MACKOLJUPCI)}
+                            onMouseLeave={(e)=>e.currentTarget.blur()}
+                            style={{color: '#d66099', fontWeight: 'bold'}}
                             >Mačkoljupci</NavDropdown.Item>
                             
                         </NavDropdown>

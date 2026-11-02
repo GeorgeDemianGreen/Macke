@@ -27,13 +27,6 @@ body{
   color: rgb(245, 82, 171)
 }
 
-.navbar-brand:focus{
-  font-family: 'Quicksand', sans-serif;
-  font-weight: bold;
-  color: rgb(255, 255, 255)
-
-}
-
 .nav-link{
   font-family: 'Quicksand', sans-serif;
   font-weight: bold;
@@ -45,11 +38,7 @@ body{
   font-weight: bold;
   color: rgb(245, 82, 171)
 }
-.nav-link:focus{
-  font-family: 'Quicksand', sans-serif;
-  font-weight: bold;
-  color: rgb(255, 255, 255)
-}
+
 .basic-navbar-nav{
     font-family: 'Quicksand', sans-serif;
   font-weight: bold;
@@ -60,10 +49,9 @@ body{
   font-weight: bold;
   color: rgb(245, 82, 171)
 }
-.basic-navbar-nav:focus{
-  font-family: 'Quicksand', sans-serif;
-  font-weight: bold;
-  color: rgb(255, 255, 255)
+
+.nav-link.show{
+  color: white !important;
 }
 
 
