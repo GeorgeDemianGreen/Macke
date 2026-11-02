@@ -8,9 +8,9 @@ import Home from './pages/Home'
 import MackoljupciPregled from './pages/mackoljupci/MackoljupciPregled'
 import MackoljupciNovi from './pages/mackoljupci/MackoljupciNovi'
 import MackoljupciPromjena from './pages/mackoljupci/MackoljupciPromjena'
-import MackaPregled from './pages/mackoljupci/MackoljupciPregled'
-import MackaNovi from './pages/mackoljupci/MackoljupciNovi'
-import MackaPromjena from './pages/mackoljupci/MackoljupciPromjena'
+import MackaPregled from './pages/macke/MackaPregled'
+import MackaNovi from './pages/macke/MackaNovi'
+import MackaPromjena from './pages/macke/MackaPromjena'
 
 function App() {
 
