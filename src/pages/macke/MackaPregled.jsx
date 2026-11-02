@@ -45,16 +45,13 @@ export default function MackaPregled() {
     return (
         <>
             <Link to={RouteNames.MACKE_DODAJ}
-            className="btn btn-success w-100 my-3">
+            className="btn btn-success w-100 my-3 pozadina">
                 Dodavanje nove mačke
             </Link>
             {/* <Table hover striped bordered> */}
             <Table
             hover
             bordered
-            style={{
-            backgroundColor: "#581831"
-    }}
 >
                 <thead>
                     <tr>

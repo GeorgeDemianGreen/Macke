@@ -71,7 +71,7 @@ export default function MackaNovi() {
                         </Link>
                     </Col>
                     <Col>
-                        <Button type="submit" variant="success">
+                        <Button type="submit" variant="success" className="pozadina">
                             Dodaj
                         </Button>
                     </Col>

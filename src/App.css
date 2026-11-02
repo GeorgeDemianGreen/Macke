@@ -5,9 +5,32 @@
 .desno{
   text-align: right;
 }
-table tbody tr.macka-red > td {
-    background-color: #faabcb !important;
+
+
+body{
+  background-color: #ebe2e6;
+  
 }
-table tbody tr.glasanje-red > td {
-    background-color: #faabcb !important;
+
+.pozadina{
+  background-color: #e9cdda;
+  color: #ec7bb2;
+  border-color: #d51f77;
+}
+
+.pozadina:hover{
+  background-color: #e9bfd3;
+  color: #d51f77;
+  border-color: #880746;
+}
+
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active,
+:not(.btn-check)+.btn:active {
+  background-color: #d55c97;
+  color: #3d031f;
+  border-color: #880746;
+}
+
+.bg-body-tertiary, .dropdown-menu {
+    background-color: #e9cdda !important;
 }

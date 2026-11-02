@@ -11,7 +11,7 @@ export default function Izbornik() {
 
 
     return (
-        <Navbar expand="lg" className="bg-body-tertiary">
+        <Navbar expand="lg" className="bg-body-tertiary" >
             <Container>
                 <Navbar.Brand href="#home">
                     {IME_APLIKACIJE}
