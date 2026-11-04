@@ -38,6 +38,9 @@ body{
   font-weight: bold;
   color: rgb(245, 82, 171)
 }
+.nav-link:focus{
+  color: white
+}
 
 .basic-navbar-nav{
     font-family: 'Quicksand', sans-serif;
