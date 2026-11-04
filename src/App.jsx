@@ -11,6 +11,7 @@ import MackoljupciPromjena from './pages/mackoljupci/MackoljupciPromjena'
 import MackaPregled from './pages/macke/MackaPregled'
 import MackaNovi from './pages/macke/MackaNovi'
 import MackaPromjena from './pages/macke/MackaPromjena'
+import GeneriranjePodataka from './pages/GeneriranjePodataka'
 
 function App() {
 
