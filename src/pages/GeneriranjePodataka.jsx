@@ -8,7 +8,7 @@ import MackoljupciService from '../services/mackoljupci/MackoljupciService';
 
 export default function GeneriranjePodataka() {
     const [brojMacaka, setBrojMacaka] = useState(5);
-    const [brojMackoljubaca, setBrojMackoljubaca] = useState(20);
+    const [BrojMackoljubaca, setBrojMackoljubaca] = useState(20);
     const [poruka, setPoruka] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -19,21 +19,21 @@ export default function GeneriranjePodataka() {
 
     const generirajMacke = async (broj) => {
         const naziviMacaka = [
-            'Web programiranje',
-            'Java programiranje',
-            'Python programiranje',
-            'Frontend razvoj',
-            'Backend razvoj',
-            'Full Stack razvoj',
-            'Mobile razvoj',
-            'DevOps',
-            'Data Science',
-            'Cyber Security',
-            'UI/UX dizajn',
-            'Digital Marketing',
-            'Grafički dizajn',
-            'Video produkcija',
-            'Fotografija'
+            'Bobica',
+            'Dušica',
+            'Anđelka',
+            'Obraščić',
+            'Duda',
+            'Mini',
+            'Miško',
+            'Barica',
+            'Kikica',
+            'Ružica',
+            'Popi',
+            'Slavica',
+            'Đurđa',
+            'Đedo',
+            'Milica'
         ];
 
         for (let i = 0; i < broj; i++) {
@@ -49,13 +49,13 @@ export default function GeneriranjePodataka() {
 
     const generirajMackoljupce = async (broj) => {
         for (let i = 0; i < broj; i++) {
-            const mackoljubac = {
+            const mackoljupci = {
                 ime: i%2===0? faker.person.firstName('male') : faker.person.firstName('female'),
                 prezime: faker.person.lastName(),
                 email: faker.internet.email(),
                 oib: faker.string.numeric(11)
             };
-            await mackoljupciService.dodaj(mackoljubac);
+            await MackoljupciService.dodaj(mackoljupci);
         }
     };
 
@@ -105,18 +105,18 @@ export default function GeneriranjePodataka() {
         }
     };
 
-    const handleGenerirajmackoljupce = async (e) => {
+    const handleGenerirajMackoljupce = async (e) => {
         e.preventDefault();
         setLoading(true);
         setPoruka(null);
 
         try {
             
-            await generirajmackoljupce(brojmackoljubaca);
+            await generirajMackoljupce(BrojMackoljubaca);
 
             setPoruka({
                 tip: 'success',
-                tekst: `Uspješno generirano ${brojmackoljubaca} mackoljubaca!`
+                tekst: `Uspješno generirano ${BrojMackoljubaca} mackoljubaca!`
             });
         } catch (error) {
             setPoruka({
@@ -128,7 +128,7 @@ export default function GeneriranjePodataka() {
         }
     };
 
-    const handleObrisimackoljupce = async () => {
+    const handleObrisiMackoljupce = async () => {
         if (!window.confirm('Jeste li sigurni da želite obrisati sve mackoljupce?')) {
             return;
         }
@@ -137,11 +137,11 @@ export default function GeneriranjePodataka() {
         setPoruka(null);
 
         try {
-            const rezultat = await mackoljupciService.get();
+            const rezultat = await MackoljupciService.get();
             const mackoljupci = rezultat.data;
             
             for (const mackoljubac of mackoljupci) {
-                await mackoljupciService.obrisi(mackoljubac.sifra);
+                await MackoljupciService.obrisi(mackoljubac.sifra);
             }
 
             setPoruka({
@@ -251,15 +251,15 @@ export default function GeneriranjePodataka() {
                     </Form>
                 </Col>
                 <Col md={4}>
-                    <Form onSubmit={handleGenerirajmackoljupce}>
+                    <Form onSubmit={handleGenerirajMackoljupce}>
                         <Form.Group className="mb-3">
                             <Form.Label>Broj mackoljubaca</Form.Label>
                             <Form.Control
                                 type="number"
                                 min="1"
                                 max="200"
-                                value={brojmackoljubaca}
-                                onChange={(e) => setBrojmackoljubaca(parseInt(e.target.value))}
+                                value={BrojMackoljubaca}
+                                onChange={(e) => setBrojMackoljubaca(parseInt(e.target.value))}
                                 disabled={loading}
                             />
                             <Form.Text className="text-muted">
@@ -304,7 +304,7 @@ export default function GeneriranjePodataka() {
                 <Col md={4}>
                     <Button 
                         variant="danger" 
-                        onClick={handleObrisimackoljupce}
+                        onClick={handleObrisiMackoljupce}
                         disabled={loading}
                         className="w-100 mb-2"
                     >
@@ -312,14 +312,7 @@ export default function GeneriranjePodataka() {
                     </Button>
                 </Col>
                 <Col md={4}>
-                    <Button 
-                        variant="danger" 
-                        onClick={handleObrisiGrupe}
-                        disabled={loading}
-                        className="w-100 mb-2"
-                    >
-                        {loading ? 'Brisanje...' : 'Obriši sve grupe'}
-                    </Button>
+                    
                 </Col>
             </Row>
 
