@@ -36,7 +36,9 @@ export default function Izbornik() {
                             onMouseLeave={(e)=>e.currentTarget.blur()}
                             style={{color: '#d66099', fontWeight: 'bold'}}
                             >Mačkoljupci</NavDropdown.Item>
-                            
+                            <NavDropdown.Item
+                                onClick={()=>navigate(RouteNames.GENERIRANJE_PODATAKA)}
+                                >Generiraj podatke</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

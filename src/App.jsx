@@ -30,6 +30,7 @@ function App() {
             <Route path={RouteNames.MACKOLJUPCI_DODAJ} element={<MackoljupciNovi />} />
             <Route path={RouteNames.MACKOLJUPCI_PROMJENA} element={<MackoljupciPromjena />} />
 
+            <Route path={RouteNames.GENERIRANJE_PODATAKA} element={<GeneriranjePodataka />} />
           </Routes>
         </Container>
         <hr />

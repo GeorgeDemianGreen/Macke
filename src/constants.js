@@ -11,6 +11,8 @@ export const RouteNames = {
     MACKOLJUPCI: '/mackoljupci',
     MACKOLJUPCI_DODAJ: '/mackoljupci/novi',
     MACKOLJUPCI_PROMJENA: '/mackoljupci/:sifra',
+
+    GENERIRANJE_PODATAKA: '/generiraj-podatke'
 }
 
 // memorija, localStorage, firebase
