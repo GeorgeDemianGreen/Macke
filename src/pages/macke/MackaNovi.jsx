@@ -2,11 +2,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import MackaService from "../../services/macke/MackaService";
-
+import {useState, useRef } from "react";
+import Cropper from 'react-cropper';
+import 'cropperjs/dist/cropper.css';
 
 export default function MackaNovi() {
 
     const navigate = useNavigate()
+    const [slikaZaCrop, setSlikaZaCrop] = useState(null);
+    const cropperRef = useRef(null);
 
     async function dodaj(macka){
         await MackaService.dodaj(macka).then(()=>{
@@ -14,15 +18,62 @@ export default function MackaNovi() {
         })
     }
 
+       function onChangeImage(e) {
+        e.preventDefault();
+
+        let files;
+        if (e.dataTransfer) {
+            files = e.dataTransfer.files;
+        } else if (e.target) {
+            files = e.target.files;
+        }
+
+        if (!files || !files.length) {
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            setSlikaZaCrop(reader.result);
+        };
+
+        try {
+            reader.readAsDataURL(files[0]);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     function obradiSubmit(e){ // e je event
         e.preventDefault() // nemoj odraditi submit
         const podaci = new FormData(e.target)
+
+        let dataUrl = null
+        if (cropperRef.current && cropperRef.current.cropper && cropperRef.current.cropper.cropped) {
+            const cropper = cropperRef.current.cropper;
+            const selectionData = cropper.getData();
+            const actualWidth = selectionData.width;
+            const actualHeight = selectionData.height;
+            const targetSize = 400;
+            const canvasWidth = actualWidth > targetSize ? targetSize : actualWidth;
+            const canvasHeight = actualHeight > targetSize ? targetSize : actualHeight;
+            const canvas = cropper.getCroppedCanvas({
+                width: canvasWidth,
+                height: canvasHeight,
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high',
+            });
+            dataUrl = canvas.toDataURL('image/png');
+        }
+
+
         dodaj({
             naziv: podaci.get('naziv'),
             debljina: parseInt(podaci.get('debljina')),
             boja: podaci.get('boja'),
             dlaka: podaci.get('dlaka'),
-            mazna: podaci.get('mazna') 
+            mazna: podaci.get('mazna'),
+            slika: dataUrl
         })
     }
 
@@ -78,6 +129,24 @@ export default function MackaNovi() {
                 </Row>
             </Form>
 
+                <Col lg={6}>
+                <input className='mb-3' type='file' onChange={onChangeImage} />
+                <Cropper
+                    src={slikaZaCrop}
+                    style={{ height: 400, width: '100%' }}
+                    initialAspectRatio={1}
+                    guides={true}
+                    autoCropArea={1}
+                    viewMode={1}
+                    minCropBoxWidth={400}
+                    minCropBoxHeight={400}
+                    cropBoxResizable={false}
+                    background={false}
+                    responsive={true}
+                    checkOrientation={false}
+                    ref={cropperRef}
+                />
+            </Col>
 
         </>
     )
