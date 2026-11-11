@@ -3,13 +3,14 @@ import { RouteNames } from "../../constants";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import MackoljupciService from "../../services/mackoljupci/MackoljupciService";
 import { useEffect, useState } from "react";
-
+import MackaService from "../../services/macke/MackaService";
 
 export default function MackoljupciPromjena() {
 
     const navigate = useNavigate()
     const params = useParams()
     const [mackoljupci, setmackoljupci] = useState({})
+    const [macke, setMacke] = useState([])
 
     async function ucitajmackoljupci(){
         await MackoljupciService.getBySifra(params.sifra).then((odgovor)=>{
@@ -17,6 +18,17 @@ export default function MackoljupciPromjena() {
            setmackoljupci(s)
         })
     }
+
+     async function ucitajMacke(){
+            await MackaService.get().then((res) => {
+                setMacke(res.data)
+            } )
+        }
+        
+     useEffect(()=>{
+        ucitajMacke()
+    },[])
+
 
     useEffect(()=>{
         ucitajmackoljupci()
@@ -59,10 +71,16 @@ export default function MackoljupciPromjena() {
                     defaultValue={mackoljupci.ime}/>
                 </Form.Group>
 
-                <Form.Group controlId="omiljenamacka">
+               <Form.Group controlId="macke">
                     <Form.Label>Omiljena mačka</Form.Label>
-                    <Form.Control type="text" name="omiljenamacka" required 
-                    defaultValue={mackoljupci.omiljenamacka}/>
+                    <Form.Select name="macke" required>
+                        <option value="" key={0}>Odabir omiljene mačke</option>
+                        {macke && macke.map((s)=>(
+                             <option value={s.sifra} key={s.sifra}>
+                                {s.naziv} 
+                             </option>
+                        ))}
+                    </Form.Select>
                 </Form.Group>
 
                 <Row className="mt-4">

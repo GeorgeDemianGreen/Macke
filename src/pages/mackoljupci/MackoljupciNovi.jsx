@@ -2,17 +2,34 @@ import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import MackoljupciService from "../../services/mackoljupci/MackoljupciService";
+import { useEffect, useState } from "react";
+import MackaService from "../../services/macke/MackaService";
 
 
 export default function MackoljupciNovi() {
 
     const navigate = useNavigate()
 
-    async function dodaj(mackoljupci){
-        await MackoljupciService.dodaj(mackoljupci).then(()=>{
+    const [macke, setMacke] = useState([])
+
+      async function ucitajMacke(){
+        await MackaService.get().then((res) => {
+            setMacke(res.data)
+        } )
+    }
+
+    useEffect(()=>{
+        ucitajMacke()
+    },[])
+
+
+    async function dodaj(mackoljupce){
+        await MackoljupciService.dodaj(mackoljupce).then(()=>{
             navigate(RouteNames.MACKOLJUPCI)
         })
     }
+
+    
 
     function obradiSubmit(e){ // e je event
         e.preventDefault() // nemoj odraditi submit
@@ -41,14 +58,20 @@ export default function MackoljupciNovi() {
 
                  <Form.Group controlId="ime">
                     <Form.Label>Ime</Form.Label>
-                    <Form.Control type="number" name="ime" step={1} />
+                    <Form.Control type="text" name="ime" step={1} />
                 </Form.Group>
 
-                 <Form.Group controlId="omiljenamacka">
+                  <Form.Group controlId="macke">
                     <Form.Label>Omiljena mačka</Form.Label>
-                    <Form.Control type="text" name="omiljenamacka" step={1} />
+                    <Form.Select name="macke" required>
+                        <option value="" key={0}>Odabir omiljene mačke</option>
+                        {macke && macke.map((s)=>(
+                             <option value={s.sifra} key={s.sifra}>
+                                {s.naziv} 
+                             </option>
+                        ))}
+                    </Form.Select>
                 </Form.Group>
-
 
             
                 <Row className="mt-4">

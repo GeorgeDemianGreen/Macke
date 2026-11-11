@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { RouteNames } from "../../constants"
 
 
+
 export default function MackaPregled() {
 
     const [macke, setMacke] = useState([])
@@ -74,6 +75,7 @@ export default function MackaPregled() {
                                 style={{ display: "block", margin: "0 auto" }}
                                  />
                             </td>
+                            
                             <td>
                                 {macka.brojGlasova}
                                 <p

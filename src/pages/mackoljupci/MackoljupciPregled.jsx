@@ -3,12 +3,12 @@ import MackoljupciService from "../../services/mackoljupci/MackoljupciService"
 import { Button, Table } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import { RouteNames } from "../../constants"
-
+import MackaService from "../../services/macke/MackaService"
 
 export default function MackoljupciPregled() {
 
     const [mackoljupci, setmackoljupci] = useState([])
-
+    const [macke, setmacke] = useState([])  
     const navigate = useNavigate()
 
     async function ucitajmackoljupci() {
@@ -18,9 +18,18 @@ export default function MackoljupciPregled() {
         })
     }
 
+    async function ucitajMacke() {
+        await MackaService.get().then((o) => {
+            // console.table(odgovor.data)
+            setmacke(o.data)
+        })
+    }
+
+
     useEffect(() => {
         //console.log('Dobrodošao na pregled Mackoljubaca')
         ucitajmackoljupci()
+        ucitajMacke()
     }, [])
 
 
@@ -33,6 +42,10 @@ export default function MackoljupciPregled() {
         ucitajmackoljupci()
     }
 
+    function dohvatiNazivMacke(sifraMacke) {
+    const macka = macke.find(s => s.sifra === sifraMacke)
+    return macka.naziv
+}
 
 
     
@@ -67,6 +80,9 @@ export default function MackoljupciPregled() {
                             </td>
                             <td className="lead">
                                 {Mackoljupci.ime}
+                            </td>
+                            <td>
+                                  {dohvatiNazivMacke(mackoljupci.macke)}
                             </td>
                             <td className="lead">
                                 {Mackoljupci.omiljenamacka}
