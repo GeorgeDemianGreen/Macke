@@ -65,34 +65,35 @@ export default function MackoljupciPregled() {
                     <tr>
                         <th>Slika</th>
                         <th>Ime</th>
+                        <th>Prezime</th>
                         <th>Omiljena mačka</th>
                         <th>Akcija</th>
                     </tr>
                 </thead>
                 <tbody> 
-                    {mackoljupci && mackoljupci.map((Mackoljupci) => (
-                        <tr key={Mackoljupci.sifra} className="Mackoljupci-red">
+                    {mackoljupci && mackoljupci.map((mackoljubac) => (
+                        <tr key={mackoljubac.sifra} className="Mackoljupci-red">
                             <td className="lead">
-                                <img src={Mackoljupci.slika} 
+                                <img src={mackoljubac.slika} 
                                 width="80"
                                 style={{ display: "block", margin: "0 auto" }}
                                  />
                             </td>
                             <td className="lead">
-                                {Mackoljupci.ime}
-                            </td>
-                            <td>
-                                  {dohvatiNazivMacke(mackoljupci.macke)}
+                                {mackoljubac.ime}
                             </td>
                             <td className="lead">
-                                {Mackoljupci.omiljenamacka}
-                                </td>
+                                {mackoljubac.prezime}
+                            </td>
                             <td>
-                                <Button onClick={()=>{navigate(`/mackoljupci/${Mackoljupci.sifra}`)}}>
+                                  {dohvatiNazivMacke(mackoljubac.omiljenamacka)}
+                            </td>
+                            <td>
+                                <Button onClick={()=>{navigate(`/mackoljupci/${mackoljubac.sifra}`)}}>
                                     Promjena
                                 </Button>
                                 &nbsp;&nbsp;
-                                <Button variant="danger" onClick={()=>obrisi(Mackoljupci.sifra)}>
+                                <Button variant="danger" onClick={()=>obrisi(mackoljubac.sifra)}>
                                     Obriši
                                 </Button>
                             </td>

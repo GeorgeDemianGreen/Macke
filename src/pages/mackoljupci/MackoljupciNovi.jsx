@@ -12,33 +12,34 @@ export default function MackoljupciNovi() {
 
     const [macke, setMacke] = useState([])
 
-      async function ucitajMacke(){
+    async function ucitajMacke() {
         await MackaService.get().then((res) => {
             setMacke(res.data)
-        } )
+        })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         ucitajMacke()
-    },[])
+    }, [])
 
 
-    async function dodaj(mackoljupce){
-        await MackoljupciService.dodaj(mackoljupce).then(()=>{
+    async function dodaj(mackoljupce) {
+        await MackoljupciService.dodaj(mackoljupce).then(() => {
             navigate(RouteNames.MACKOLJUPCI)
         })
     }
 
-    
 
-    function obradiSubmit(e){ // e je event
+
+    function obradiSubmit(e) { // e je event
         e.preventDefault() // nemoj odraditi submit
         const podaci = new FormData(e.target)
         dodaj({
-            slika: podaci.get('slika'),
-            ime:podaci.get('ime'),
-            omiljenamacka: podaci.get('omiljenamacka'),
-            
+            //slika: podaci.get('slika'), // u jednom od sljedećih koraka
+            ime: podaci.get('ime'),
+            prezime: podaci.get('prezime'),
+            omiljenamacka: parseInt(podaci.get('omiljenamacka')),
+
         })
     }
 
@@ -51,33 +52,34 @@ export default function MackoljupciNovi() {
 
             <Form onSubmit={obradiSubmit}>
 
-                <Form.Group controlId="slika">
-                    <Form.Label>Slika</Form.Label>
-                    <Form.Control type="text" name="slika" required />
-                </Form.Group>
 
-                 <Form.Group controlId="ime">
+                <Form.Group controlId="ime">
                     <Form.Label>Ime</Form.Label>
-                    <Form.Control type="text" name="ime" step={1} />
+                    <Form.Control type="text" name="ime"/>
                 </Form.Group>
 
-                  <Form.Group controlId="macke">
+                <Form.Group controlId="prezime">
+                    <Form.Label>Prezime</Form.Label>
+                    <Form.Control type="text" name="prezime"/>
+                </Form.Group>
+
+                <Form.Group controlId="omiljenamacka">
                     <Form.Label>Omiljena mačka</Form.Label>
-                    <Form.Select name="macke" required>
+                    <Form.Select name="omiljenamacka" required>
                         <option value="" key={0}>Odabir omiljene mačke</option>
-                        {macke && macke.map((s)=>(
-                             <option value={s.sifra} key={s.sifra}>
-                                {s.naziv} 
-                             </option>
+                        {macke && macke.map((s) => (
+                            <option value={s.sifra} key={s.sifra}>
+                                {s.naziv}
+                            </option>
                         ))}
                     </Form.Select>
                 </Form.Group>
 
-            
+
                 <Row className="mt-4">
                     <Col>
-                        <Link to={RouteNames.MACKE}
-                        className="btn btn-danger">
+                        <Link to={RouteNames.MACKOLJUPCI}
+                            className="btn btn-danger">
                             Odustani
                         </Link>
                     </Col>

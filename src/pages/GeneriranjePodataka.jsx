@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Form, Alert, Container, Row, Col } from 'react-bootstrap';
-import { Faker, hr } from '@faker-js/faker';
+import { Faker, fakerTR, hr } from '@faker-js/faker';
 import MackaService from '../services/macke/MackaService';
 import MackoljupciService from '../services/mackoljupci/MackoljupciService';
 
@@ -38,11 +38,14 @@ export default function GeneriranjePodataka() {
 
         for (let i = 0; i < broj; i++) {
             await MackaService.dodaj({
+                slika: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII',
                 naziv: naziviMacaka[i % naziviMacaka.length] + (i >= naziviMacaka.length ? ` ${Math.floor(i / naziviMacaka.length) + 1}` : ''),
-                trajanje: faker.number.int({ min: 130, max: 350 }),
-                cijena: faker.number.float({ min: 1100, max: 5000, precision: 0.01 }).toFixed(2),
-                datumPokretanja: faker.date.soon().toISOString().split('T')[0],
-                aktivan: faker.datatype.boolean()
+                debljina: faker.number.int({min: 3, max: 8}),
+                boja: 'Crna', 
+                dlaka: 'Duga', 
+                mazna: 'Veoma', 
+                brojGlasova: 0,
+
             });
         }
     };
@@ -51,9 +54,9 @@ export default function GeneriranjePodataka() {
         for (let i = 0; i < broj; i++) {
             const mackoljupci = {
                 ime: i%2===0? faker.person.firstName('male') : faker.person.firstName('female'),
+                slika: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII',
                 prezime: faker.person.lastName(),
-                email: faker.internet.email(),
-                oib: faker.string.numeric(11)
+                omiljenamacka: 1 // ovo možda kasnije uzeti slučajnu prethodno kreiranu mačku - vidi generianje grupe kako se radi s smjerom
             };
             await MackoljupciService.dodaj(mackoljupci);
         }

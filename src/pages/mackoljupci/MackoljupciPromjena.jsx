@@ -9,13 +9,13 @@ export default function MackoljupciPromjena() {
 
     const navigate = useNavigate()
     const params = useParams()
-    const [mackoljupci, setmackoljupci] = useState({})
+    const [mackoljubac, setMackoljubac] = useState({})
     const [macke, setMacke] = useState([])
 
     async function ucitajmackoljupci(){
         await MackoljupciService.getBySifra(params.sifra).then((odgovor)=>{
            const s = odgovor.data
-           setmackoljupci(s)
+           setMackoljubac(s)
         })
     }
 
@@ -44,9 +44,10 @@ export default function MackoljupciPromjena() {
         e.preventDefault() // nemoj odraditi submit
         const podaci = new FormData(e.target)
         promijeni({
-            slika: podaci.get('slika'),
+            //slika: podaci.get('slika'), // ovo je jedan od sljedećih koraka
             ime: podaci.get('ime'),
-            omiljenamacka: podaci.get('omiljenamacka'),
+            prezime: podaci.get('prezime'),
+            omiljenamacka: parseInt(podaci.get('omiljenamacka')),
         })
     }
 
@@ -59,21 +60,25 @@ export default function MackoljupciPromjena() {
 
             <Form onSubmit={obradiSubmit}>
 
-                <Form.Group controlId="slika">
-                    <Form.Label>Slika</Form.Label>
-                    <Form.Control type="text" name="slika" required 
-                    defaultValue={mackoljupci.slika}/>
-                </Form.Group>
+                <img src={mackoljubac.slika} alt={mackoljubac.ime} />
+
 
                  <Form.Group controlId="ime">
                     <Form.Label>Ime</Form.Label>
                     <Form.Control type="text" name="ime" required 
-                    defaultValue={mackoljupci.ime}/>
+                    defaultValue={mackoljubac.ime}/>
                 </Form.Group>
 
-               <Form.Group controlId="macke">
+                <Form.Group controlId="prezime">
+                    <Form.Label>Prezime</Form.Label>
+                    <Form.Control type="text" name="prezime" required 
+                    defaultValue={mackoljubac.prezime}/>
+                </Form.Group>
+
+
+               <Form.Group controlId="omiljenamacka">
                     <Form.Label>Omiljena mačka</Form.Label>
-                    <Form.Select name="macke" required>
+                    <Form.Select name="omiljenamacka" required value={mackoljubac.omiljenamacka || ''} onChange={(e) => setMackoljubac({...mackoljubac, omiljenamacka: parseInt(e.target.value)})}>
                         <option value="" key={0}>Odabir omiljene mačke</option>
                         {macke && macke.map((s)=>(
                              <option value={s.sifra} key={s.sifra}>
