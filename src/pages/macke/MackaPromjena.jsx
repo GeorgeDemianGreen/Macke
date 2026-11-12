@@ -66,7 +66,7 @@ export default function MackaPromjena() {
         e.preventDefault() // nemoj odraditi submit
         const podaci = new FormData(e.target)
         const objektPodataka = Object.fromEntries(podaci);
-        const rezultat = ShemaMacka.safeParse(objektPodataka); x
+        const rezultat = ShemaMacka.safeParse(objektPodataka); 
 
         let dataUrl = null
         if (cropperRef.current && cropperRef.current.cropper && cropperRef.current.cropper.cropped) {
