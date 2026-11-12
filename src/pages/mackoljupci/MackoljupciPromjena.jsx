@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import MackaService from "../../services/macke/MackaService";
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
+import { ShemaMackoljupci } from "../../schemas/ShemaMackoljupci";
 
 export default function MackoljupciPromjena() {
 
@@ -15,6 +16,8 @@ export default function MackoljupciPromjena() {
     const [macke, setMacke] = useState([])
     const [slikaZaCrop, setSlikaZaCrop] = useState(null);
     const cropperRef = useRef(null);
+    const [errors, setErrors] = useState({});
+    const [isChecking, setIsChecking] = useState(false);
 
     async function ucitajmackoljupci(){
         await MackoljupciService.getBySifra(params.sifra).then((odgovor)=>{
@@ -73,6 +76,9 @@ export default function MackoljupciPromjena() {
     function obradiSubmit(e){ // e je event
         e.preventDefault() // nemoj odraditi submit
         const podaci = new FormData(e.target)
+        const objektPodataka = Object.fromEntries(podaci);
+        const rezultat = ShemaMackoljupci.safeParse(objektPodataka); 
+        
 
          let dataUrl = null
         if (cropperRef.current && cropperRef.current.cropper && cropperRef.current.cropper.cropped) {
@@ -92,6 +98,16 @@ export default function MackoljupciPromjena() {
             dataUrl = canvas.toDataURL('image/png');
         }
 
+        
+        if (!rezultat.success) {
+            const noveGreske = {};
+            rezultat.error.issues.forEach((greska) => {
+                noveGreske[greska.path[0]] = greska.message;
+            });
+            setErrors(noveGreske);
+            return;
+        }
+
         promijeni({
             //slika: podaci.get('slika'), // ovo je jedan od sljedećih koraka
             ime: podaci.get('ime'),
@@ -99,7 +115,24 @@ export default function MackoljupciPromjena() {
             omiljenamacka: parseInt(podaci.get('omiljenamacka')),
             slika: dataUrl
         })
-    }
+       }
+    const ocistiGresku = (nazivPolja) => {
+        if (errors[nazivPolja]) {
+            const noveGreske = { ...errors };
+            delete noveGreske[nazivPolja];
+            setErrors(noveGreske);
+        }
+    };
+
+
+    const handleFocus = (nazivPolja) => {
+        ocistiGresku(nazivPolja);
+        if (isChecking) setIsChecking(true)
+    };
+
+    const handleBlur = () => {
+        if (isChecking) setIsChecking(false);
+    };
 
 
     return (
@@ -112,28 +145,46 @@ export default function MackoljupciPromjena() {
 
                 <img src={mackoljubac.slika} alt={mackoljubac.ime} />
 
-
-                 <Form.Group controlId="ime">
+ <Form.Group controlId="ime">
                     <Form.Label>Ime</Form.Label>
-                    <Form.Control type="text" name="ime" required 
-                    defaultValue={mackoljubac.ime}/>
+                    <Form.Control type="text" 
+                     placeholder="Unesite ime"
+                                    className="granica"
+                                    defaultValue={mackoljubac.ime}
+                                    name="ime"
+                                    isInvalid={!!errors.ime}
+                                        onFocus={() => handleFocus('ime')} // Pozivamo novu funkciju
+                                        onBlur={handleBlur}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.ime}
+                                    </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="prezime">
                     <Form.Label>Prezime</Form.Label>
-                    <Form.Control type="text" name="prezime" required 
-                    defaultValue={mackoljubac.prezime}/>
+                    <Form.Control type="text"
+                    placeholder="Unesite prezime"
+                                    className="granica"
+                                    defaultValue={mackoljubac.prezime}
+                                    name="prezime"
+                                    isInvalid={!!errors.prezime}
+                                        onFocus={() => handleFocus('prezime')} // Pozivamo novu funkciju
+                                        onBlur={handleBlur}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.prezime}
+                                    </Form.Control.Feedback>
                 </Form.Group>
 
-
-               <Form.Group controlId="omiljenamacka">
+                <Form.Group controlId="omiljenamacka">
                     <Form.Label>Omiljena mačka</Form.Label>
-                    <Form.Select name="omiljenamacka" required value={mackoljubac.omiljenamacka || ''} onChange={(e) => setMackoljubac({...mackoljubac, omiljenamacka: parseInt(e.target.value)})}>
+                    <Form.Select name="omiljenamacka" required>
                         <option value="" key={0}>Odabir omiljene mačke</option>
-                        {macke && macke.map((s)=>(
-                             <option value={s.sifra} key={s.sifra}>
-                                {s.naziv} 
-                             </option>
+                        {macke && macke.map((s) => (
+                            <option value={s.sifra} key={s.sifra}>
+                                {s.naziv}
+                            </option>
                         ))}
                     </Form.Select>
                 </Form.Group>

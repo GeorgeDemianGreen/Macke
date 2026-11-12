@@ -185,7 +185,7 @@ export default function MackaPromjena() {
                 <Form.Group controlId="dlaka">
                     <Form.Label>Dlaka</Form.Label>
                     <Form.Control type="text"
-                        name="boja"
+                        name="dlaka"
                         placeholder="0,00"
                         step={0.01}
                         defaultValue={macka.dlaka}
