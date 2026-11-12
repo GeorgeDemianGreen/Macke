@@ -66,7 +66,7 @@ export default function MackaPromjena() {
         e.preventDefault() // nemoj odraditi submit
         const podaci = new FormData(e.target)
         const objektPodataka = Object.fromEntries(podaci);
-        const rezultat = ShemaMacka.safeParse(objektPodataka);x
+        const rezultat = ShemaMacka.safeParse(objektPodataka); x
 
         let dataUrl = null
         if (cropperRef.current && cropperRef.current.cropper && cropperRef.current.cropper.cropped) {
@@ -86,7 +86,7 @@ export default function MackaPromjena() {
             dataUrl = canvas.toDataURL('image/png');
         }
 
-           if (!rezultat.success) {
+        if (!rezultat.success) {
             const noveGreske = {};
             rezultat.error.issues.forEach((greska) => {
                 noveGreske[greska.path[0]] = greska.message;
@@ -105,7 +105,7 @@ export default function MackaPromjena() {
             slika: dataUrl || macka.slika
         })
     }
-     const ocistiGresku = (nazivPolja) => {
+    const ocistiGresku = (nazivPolja) => {
         if (errors[nazivPolja]) {
             const noveGreske = { ...errors };
             delete noveGreske[nazivPolja];
@@ -124,7 +124,7 @@ export default function MackaPromjena() {
     };
 
 
-    
+
 
     return (
         <>
@@ -136,78 +136,82 @@ export default function MackaPromjena() {
 
                 <Form.Group controlId="naziv">
                     <Form.Label>Naziv</Form.Label>
-                    <Form.Control type="text" 
-                    placeholder="Unesite naziv macke"
-                                    className="granica"
-                                    name="naziv"
-                                    isInvalid={!!errors.naziv}
-                                        onFocus={() => handleFocus('naziv')} // Pozivamo novu funkciju
-                                        onBlur={handleBlur}
-                                    />
-                                    <Form.Control.Feedback type="invalid">
-                                        {errors.naziv}
-                                    </Form.Control.Feedback>
-                    
+                    <Form.Control type="text"
+                        placeholder="Unesite naziv macke"
+                        className="granica"
+                        defaultValue={macka.naziv}
+                        name="naziv"
+                        isInvalid={!!errors.naziv}
+                        onFocus={() => handleFocus('naziv')} // Pozivamo novu funkciju
+                        onBlur={handleBlur}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        {errors.naziv}
+                    </Form.Control.Feedback>
+
                 </Form.Group>
 
                 <Form.Group controlId="debljina">
                     <Form.Label>Debljina</Form.Label>
-                    <Form.Control type="number" 
-                     name="debljina" step={1}
-                                        placeholder="0"
-                                        isInvalid={!!errors.debljina}
-                                        onFocus={() => ocistiGresku('debljina')}
-                                        onBlur={handleBlur}
-                                    />
-                                    <Form.Control.Feedback type="invalid">
-                                        {errors.debljina}
-                                    </Form.Control.Feedback>
+                    <Form.Control type="number"
+                        name="debljina" step={1}
+                        placeholder="0"
+                        defaultValue={macka.debljina}
+                        isInvalid={!!errors.debljina}
+                        onFocus={() => ocistiGresku('debljina')}
+                        onBlur={handleBlur}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        {errors.debljina}
+                    </Form.Control.Feedback>
                 </Form.Group>
 
-                 <Form.Group controlId="boja">
+                <Form.Group controlId="boja">
                     <Form.Label>Boja</Form.Label>
-                    <Form.Control type="text" 
-                    name="dlaka" 
-                                        placeholder="0,00"
-                                        step={0.01}
-                                        isInvalid={!!errors.dlaka}
-                                        onFocus={() => ocistiGresku('dlaka')}
-                                        onBlur={handleBlur}
-                                    />
-                                    <Form.Control.Feedback type="invalid">
-                                        {errors.dlaka}
-                                    </Form.Control.Feedback>
+                    <Form.Control type="text"
+                        name="boja"
+                        placeholder="0,00"
+                        step={0.01}
+                        defaultValue={macka.boja}
+                        isInvalid={!!errors.boja}
+                        onFocus={() => ocistiGresku('boja')}
+                        onBlur={handleBlur}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        {errors.boja}
+                    </Form.Control.Feedback>
                 </Form.Group>
 
-                 <Form.Group controlId="dlaka">
+                <Form.Group controlId="dlaka">
                     <Form.Label>Dlaka</Form.Label>
-                    <Form.Control type="text" 
-                    name="boja" 
-                                        placeholder="0,00"
-                                        step={0.01}
-                                        isInvalid={!!errors.boja}
-                                        onFocus={() => ocistiGresku('boja')}
-                                        onBlur={handleBlur}
-                                    />
-                                    <Form.Control.Feedback type="invalid">
-                                        {errors.boja}
-                                    </Form.Control.Feedback>
+                    <Form.Control type="text"
+                        name="boja"
+                        placeholder="0,00"
+                        step={0.01}
+                        defaultValue={macka.dlaka}
+                        isInvalid={!!errors.dlaka}
+                        onFocus={() => ocistiGresku('dlaka')}
+                        onBlur={handleBlur}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        {errors.dlaka}
+                    </Form.Control.Feedback>
                 </Form.Group>
 
-                 <Form.Group controlId="mazna">
+                <Form.Group controlId="mazna">
                     <Form.Label>Mazna</Form.Label>
                     <Form.Control type="text"
-                    name="mazna" 
-                                        placeholder="0,00"
-                                        step={0.01}
-                                        isInvalid={!!errors.mazna}
-                                        onFocus={() => ocistiGresku('mazna')}
-                                        onBlur={handleBlur}
-                                    />
-                                    <Form.Control.Feedback type="invalid">
-                                        {errors.mazna}
-                                    </Form.Control.Feedback>
-        
+                        name="mazna"
+                        placeholder="0,00"
+                        step={0.01}
+                        isInvalid={!!errors.mazna}
+                        onFocus={() => ocistiGresku('mazna')}
+                        onBlur={handleBlur}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        {errors.mazna}
+                    </Form.Control.Feedback>
+
                 </Form.Group>
 
                 <Row className="mt-4">
