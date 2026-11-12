@@ -151,12 +151,12 @@ export default function MackaNovi() {
                         name="dlaka"
                         placeholder="0,00"
                         step={0.01}
-                        isInvalid={!!errors.dlaka}
-                        onFocus={() => ocistiGresku('dlaka')}
+                        isInvalid={!!errors.boja}
+                        onFocus={() => ocistiGresku('boja')}
                         onBlur={handleBlur}
                     />
                     <Form.Control.Feedback type="invalid">
-                        {errors.dlaka}
+                        {errors.boja}
                     </Form.Control.Feedback>
                 </Form.Group>
 
@@ -166,12 +166,12 @@ export default function MackaNovi() {
                         name="boja"
                         placeholder="0,00"
                         step={0.01}
-                        isInvalid={!!errors.boja}
-                        onFocus={() => ocistiGresku('boja')}
+                        isInvalid={!!errors.dlaka}
+                        onFocus={() => ocistiGresku('dlaka')}
                         onBlur={handleBlur}
                     />
                     <Form.Control.Feedback type="invalid">
-                        {errors.boja}
+                        {errors.dlaka}
                     </Form.Control.Feedback>
                 </Form.Group>
 
