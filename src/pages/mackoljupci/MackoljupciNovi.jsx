@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import MackaService from "../../services/macke/MackaService";
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
+import { ShemaMackoljupci } from "../../schemas/ShemaMackoljupci";
 
 
 export default function MackoljupciNovi() {
@@ -14,6 +15,8 @@ export default function MackoljupciNovi() {
     const [macke, setMacke] = useState([])
     const [slikaZaCrop, setSlikaZaCrop] = useState(null);
     const cropperRef = useRef(null);
+    const [errors, setErrors] = useState({});
+    const [isChecking, setIsChecking] = useState(false);
 
     async function ucitajMacke() {
         await MackaService.get().then((res) => {
@@ -62,6 +65,8 @@ export default function MackoljupciNovi() {
     function obradiSubmit(e) { // e je event
         e.preventDefault() // nemoj odraditi submit
         const podaci = new FormData(e.target)
+        const objektPodataka = Object.fromEntries(podaci);
+        const rezultat = ShemaMackoljupci.safeParse(objektPodataka);
 
      let dataUrl = null
         if (cropperRef.current && cropperRef.current.cropper && cropperRef.current.cropper.cropped) {
@@ -80,7 +85,16 @@ export default function MackoljupciNovi() {
             });
             dataUrl = canvas.toDataURL('image/png');
         }
-        
+
+        if (!rezultat.success) {
+            const noveGreske = {};
+            rezultat.error.issues.forEach((greska) => {
+                noveGreske[greska.path[0]] = greska.message;
+            });
+            setErrors(noveGreske);
+            return;
+        }
+
         dodaj({
             //slika: podaci.get('slika'), // u jednom od sljedećih koraka
             ime: podaci.get('ime'),
@@ -90,6 +104,24 @@ export default function MackoljupciNovi() {
 
         })
     }
+
+      const ocistiGresku = (nazivPolja) => {
+        if (errors[nazivPolja]) {
+            const noveGreske = { ...errors };
+            delete noveGreske[nazivPolja];
+            setErrors(noveGreske);
+        }
+    };
+
+
+         const handleFocus = (nazivPolja) => {
+        ocistiGresku(nazivPolja);
+        if (isChecking) setIsChecking(true)
+    };
+
+         const handleBlur = () => {
+        if (isChecking) setIsChecking(false);
+    };
 
 
     return (
@@ -103,12 +135,32 @@ export default function MackoljupciNovi() {
 
                 <Form.Group controlId="ime">
                     <Form.Label>Ime</Form.Label>
-                    <Form.Control type="text" name="ime"/>
+                    <Form.Control type="text" 
+                     placeholder="Unesite ime"
+                                    className="granica"
+                                    name="ime"
+                                    isInvalid={!!errors.ime}
+                                        onFocus={() => handleFocus('ime')} // Pozivamo novu funkciju
+                                        onBlur={handleBlur}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.ime}
+                                    </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="prezime">
                     <Form.Label>Prezime</Form.Label>
-                    <Form.Control type="text" name="prezime"/>
+                    <Form.Control type="text"
+                    placeholder="Unesite prezime"
+                                    className="granica"
+                                    name="prezime"
+                                    isInvalid={!!errors.prezime}
+                                        onFocus={() => handleFocus('prezime')} // Pozivamo novu funkciju
+                                        onBlur={handleBlur}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.prezime}
+                                    </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="omiljenamacka">
