@@ -71,9 +71,12 @@ body{
 }
 
 .btn{
-  background-color: #e9cdda;
-  color: #ec7bb2;
-  border-color: #d51f77;
+  background-color: #ff74b5;
+  color: #ffffff;
+  font-weight: bold;
+  border-color: rgb(196, 1, 108);
+  border-width: 2px
+
 }
 
 .btn:hover{
@@ -105,4 +108,29 @@ body{
   font-weight: bold;
   color: white;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.invalid-feedback {
+  color: #be1145;
+  text-align: center;
+  border-style: solid;
+  border-color: rgb(196, 1, 108);
+  border-radius: 5px;
+  border-width: 2px;
+  background:#faebf2;
+}
+
+.form-control {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+ 
+}
+
+.text-start {
+  color: white;
+  background: linear-gradient(135deg, #ea66c9 0%, #764ba2 100%);
+  text-align: center;
+  border-radius: 10px;
+  font-weight: bold
+
 }
