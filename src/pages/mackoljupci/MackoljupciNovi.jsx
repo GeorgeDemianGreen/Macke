@@ -125,91 +125,122 @@ export default function MackoljupciNovi() {
 
 
     return (
-        <>
-            <h3>
-                Dodavanje novog mačkoljupca
-            </h3>
+    <>
+        <h3 className="mb-4">
+            Dodavanje novog mačkoljupca
+        </h3>
 
-            <Form onSubmit={obradiSubmit}>
+        <Row>
+            {/* LIJEVA STRANA - FORMA */}
+            <Col lg={6}>
+                <Form onSubmit={obradiSubmit}>
 
+                    <Form.Group controlId="ime" className="mb-3">
+                        <Form.Label>Ime</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Unesite ime"
+                            className="granica"
+                            name="ime"
+                            isInvalid={!!errors.ime}
+                            onFocus={() => handleFocus('ime')}
+                            onBlur={handleBlur}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.ime}
+                        </Form.Control.Feedback>
+                    </Form.Group>
 
-                <Form.Group controlId="ime">
-                    <Form.Label>Ime</Form.Label>
-                    <Form.Control type="text" 
-                     placeholder="Unesite ime"
-                                    className="granica"
-                                    name="ime"
-                                    isInvalid={!!errors.ime}
-                                        onFocus={() => handleFocus('ime')} // Pozivamo novu funkciju
-                                        onBlur={handleBlur}
-                                    />
-                                    <Form.Control.Feedback type="invalid">
-                                        {errors.ime}
-                                    </Form.Control.Feedback>
-                </Form.Group>
+                    <Form.Group controlId="prezime" className="mb-3">
+                        <Form.Label>Prezime</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Unesite prezime"
+                            className="granica"
+                            name="prezime"
+                            isInvalid={!!errors.prezime}
+                            onFocus={() => handleFocus('prezime')}
+                            onBlur={handleBlur}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.prezime}
+                        </Form.Control.Feedback>
+                    </Form.Group>
 
-                <Form.Group controlId="prezime">
-                    <Form.Label>Prezime</Form.Label>
-                    <Form.Control type="text"
-                    placeholder="Unesite prezime"
-                                    className="granica"
-                                    name="prezime"
-                                    isInvalid={!!errors.prezime}
-                                        onFocus={() => handleFocus('prezime')} // Pozivamo novu funkciju
-                                        onBlur={handleBlur}
-                                    />
-                                    <Form.Control.Feedback type="invalid">
-                                        {errors.prezime}
-                                    </Form.Control.Feedback>
-                </Form.Group>
+                    <Form.Group controlId="omiljenamacka" className="mb-3">
+                        <Form.Label>Omiljena mačka</Form.Label>
 
-                <Form.Group controlId="omiljenamacka">
-                    <Form.Label>Omiljena mačka</Form.Label>
-                    <Form.Select name="omiljenamacka" required>
-                        <option value="" key={0}>Odabir omiljene mačke</option>
-                        {macke && macke.map((s) => (
-                            <option value={s.sifra} key={s.sifra}>
-                                {s.naziv}
+                        <Form.Select
+                            name="omiljenamacka"
+                            required
+                        >
+                            <option value="" key={0}>
+                                Odabir omiljene mačke
                             </option>
-                        ))}
-                    </Form.Select>
-                </Form.Group>
 
+                            {macke && macke.map((s) => (
+                                <option value={s.sifra} key={s.sifra}>
+                                    {s.naziv}
+                                </option>
+                            ))}
+                        </Form.Select>
+                    </Form.Group>
 
-                <Row className="mt-4">
-                    <Col>
-                        <Link to={RouteNames.MACKOLJUPCI}
-                            className="btn btn-danger">
-                            Odustani
-                        </Link>
-                    </Col>
-                    <Col>
-                        <Button type="submit" variant="success">
-                            Dodaj
-                        </Button>
-                    </Col>
-                </Row>
-            </Form>
+                    {/* GUMBI */}
+                    <Row className="mt-4">
+                        <Col>
+                            <Link
+                                to={RouteNames.MACKOLJUPCI}
+                                className="btn btn-danger"
+                            >
+                                Odustani
+                            </Link>
+                        </Col>
 
-                <Col lg={6}>
-                <input className='mb-3' type='file' onChange={onChangeImage} />
-                <Cropper
-                    src={slikaZaCrop}
-                    style={{ height: 400, width: '100%' }}
-                    initialAspectRatio={1}
-                    guides={true}
-                    autoCropArea={1}
-                    viewMode={1}
-                    minCropBoxWidth={400}
-                    minCropBoxHeight={400}
-                    cropBoxResizable={false}
-                    background={false}
-                    responsive={true}
-                    checkOrientation={false}
-                    ref={cropperRef}
-                />
+                        <Col>
+                            <Button
+                                type="submit"
+                                variant="success"
+                            >
+                                Dodaj
+                            </Button>
+                        </Col>
+                    </Row>
+
+                </Form>
             </Col>
 
-        </>
-    )
+            {/* DESNA STRANA - CROPPER */}
+            <Col lg={6}>
+                <Form.Label>Slika mačkoljupca</Form.Label>
+
+                <input
+                    className="form-control mb-3"
+                    type="file"
+                    accept="image/*"
+                    onChange={onChangeImage}
+                />
+
+                {slikaZaCrop && (
+                    <Cropper
+                        src={slikaZaCrop}
+                        style={{ height: 400, width: '100%' }}
+                        initialAspectRatio={1}
+                        guides={true}
+                        autoCropArea={1}
+                        viewMode={1}
+                        minCropBoxWidth={400}
+                        minCropBoxHeight={400}
+                        cropBoxResizable={false}
+                        background={false}
+                        responsive={true}
+                        checkOrientation={false}
+                        ref={cropperRef}
+                    />
+                )}
+            </Col>
+
+        </Row>
+    </>
+    );
 }

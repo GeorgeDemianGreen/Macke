@@ -107,127 +107,150 @@ export default function MackaNovi() {
         if (isChecking) setIsChecking(false);
     };
 
+return (
+    <>
+        <h3 className="mb-4">
+            Dodavanje nove mačke
+        </h3>
 
-    return (
-        <>
-            <h3>
-                Dodavanje nove mačke
-            </h3>
-
-            <Form onSubmit={obradiSubmit}>
-
-                <Form.Group controlId="naziv">
-                    <Form.Label>Naziv</Form.Label>
-                    <Form.Control type="text"
-                        placeholder="Unesite naziv macke"
-                        className="granica"
-                        name="naziv"
-                        isInvalid={!!errors.naziv}
-                        onFocus={() => handleFocus('naziv')} // Pozivamo novu funkciju
-                        onBlur={handleBlur}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        {errors.naziv}
-                    </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group controlId="debljina">
-                    <Form.Label>Debljina</Form.Label>
-                    <Form.Control type="number"
-                        name="debljina" step={1}
-                        placeholder="0"
-                        isInvalid={!!errors.debljina}
-                        onFocus={() => ocistiGresku('debljina')}
-                        onBlur={handleBlur}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        {errors.debljina}
-                    </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group controlId="boja">
-                    <Form.Label>Boja</Form.Label>
-                    <Form.Control type="text"
-                        name="dlaka"
-                        placeholder="0,00"
-                        step={0.01}
-                        isInvalid={!!errors.boja}
-                        onFocus={() => ocistiGresku('boja')}
-                        onBlur={handleBlur}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        {errors.boja}
-                    </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group controlId="dlaka">
-                    <Form.Label>Dlaka</Form.Label>
-                    <Form.Control type="text"
-                        name="boja"
-                        placeholder="0,00"
-                        step={0.01}
-                        isInvalid={!!errors.dlaka}
-                        onFocus={() => ocistiGresku('dlaka')}
-                        onBlur={handleBlur}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        {errors.dlaka}
-                    </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group controlId="mazna">
-                    <Form.Label>Mazna</Form.Label>
-                    <Form.Control type="text"
-                        name="mazna"
-                        placeholder="0,00"
-                        step={0.01}
-                        isInvalid={!!errors.mazna}
-                        onFocus={() => ocistiGresku('mazna')}
-                        onBlur={handleBlur}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        {errors.mazna}
-                    </Form.Control.Feedback>
-
-                </Form.Group>
-
-
-
-
-                <Row className="mt-4">
-                    <Col>
-                        <Link to={RouteNames.MACKE}
-                            className="btn btn-danger pozadina">
-                            Odustani
-                        </Link>
-                    </Col>
-                    <Col>
-                        <Button type="submit" variant="success" className="pozadina">
-                            Dodaj
-                        </Button>
-                    </Col>
-                </Row>
-            </Form>
-
+        <Row>
+            {/* LIJEVA STRANA - FORMA */}
             <Col lg={6}>
-                <input className='mb-3' type='file' onChange={onChangeImage} />
-                <Cropper
-                    src={slikaZaCrop}
-                    style={{ height: 400, width: '100%' }}
-                    initialAspectRatio={1}
-                    guides={true}
-                    autoCropArea={1}
-                    viewMode={1}
-                    minCropBoxWidth={400}
-                    minCropBoxHeight={400}
-                    cropBoxResizable={false}
-                    background={false}
-                    responsive={true}
-                    checkOrientation={false}
-                    ref={cropperRef}
-                />
+                <Form onSubmit={obradiSubmit}>
+
+                    <Form.Group controlId="naziv" className="mb-3">
+                        <Form.Label>Naziv</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Unesite naziv mačke"
+                            className="granica"
+                            name="naziv"
+                            isInvalid={!!errors.naziv}
+                            onFocus={() => handleFocus('naziv')}
+                            onBlur={handleBlur}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.naziv}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group controlId="debljina" className="mb-3">
+                        <Form.Label>Debljina</Form.Label>
+                        <Form.Control
+                            type="number"
+                            name="debljina"
+                            step={1}
+                            placeholder="0"
+                            isInvalid={!!errors.debljina}
+                            onFocus={() => ocistiGresku('debljina')}
+                            onBlur={handleBlur}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.debljina}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group controlId="boja" className="mb-3">
+                        <Form.Label>Boja</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="boja"
+                            placeholder="Unesite boju"
+                            isInvalid={!!errors.boja}
+                            onFocus={() => ocistiGresku('boja')}
+                            onBlur={handleBlur}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.boja}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group controlId="dlaka" className="mb-3">
+                        <Form.Label>Dlaka</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="dlaka"
+                            placeholder="Unesite vrstu dlake"
+                            isInvalid={!!errors.dlaka}
+                            onFocus={() => ocistiGresku('dlaka')}
+                            onBlur={handleBlur}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.dlaka}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group controlId="mazna" className="mb-3">
+                        <Form.Label>Mazna</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="mazna"
+                            placeholder="Unesite podatak"
+                            isInvalid={!!errors.mazna}
+                            onFocus={() => ocistiGresku('mazna')}
+                            onBlur={handleBlur}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.mazna}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+
+                    {/* GUMBI */}
+                    <Row className="mt-4">
+                        <Col>
+                            <Link
+                                to={RouteNames.MACKE}
+                                className="btn btn-danger pozadina"
+                            >
+                                Odustani
+                            </Link>
+                        </Col>
+
+                        <Col>
+                            <Button
+                                type="submit"
+                                variant="success"
+                                className="pozadina"
+                            >
+                                Dodaj
+                            </Button>
+                        </Col>
+                    </Row>
+
+                </Form>
             </Col>
 
-        </>
-    )
+            {/* DESNA STRANA - CROPPER */}
+            <Col lg={6}>
+                <Form.Label>Odaberi sliku mačke</Form.Label>
+
+                <input
+                    className="form-control mb-3"
+                    type="file"
+                    accept="image/*"
+                    onChange={onChangeImage}
+                />
+
+                {slikaZaCrop && (
+                    <Cropper
+                        src={slikaZaCrop}
+                        style={{ height: 400, width: '100%' }}
+                        initialAspectRatio={1}
+                        guides={true}
+                        autoCropArea={1}
+                        viewMode={1}
+                        minCropBoxWidth={400}
+                        minCropBoxHeight={400}
+                        cropBoxResizable={false}
+                        background={false}
+                        responsive={true}
+                        checkOrientation={false}
+                        ref={cropperRef}
+                    />
+                )}
+            </Col>
+
+        </Row>
+    </>
+);
 }
