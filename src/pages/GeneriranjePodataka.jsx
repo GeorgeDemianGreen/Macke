@@ -44,7 +44,7 @@ export default function GeneriranjePodataka() {
                 boja: 'Crna', 
                 dlaka: 'Duga', 
                 mazna: 'Veoma', 
-                brojGlasova: 0,
+                brojGlasova: faker.number.int({min: 1, max: 5}),
 
             });
         }

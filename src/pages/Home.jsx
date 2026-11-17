@@ -6,12 +6,28 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import { LordIcon } from '@lordicon/react';
 import MackaService from '../services/macke/MackaService';
 import MackoljupciService from '../services/mackoljupci/MackoljupciService';
+import Highcharts from 'highcharts';
+import {HighchartsReact} from 'highcharts-react-official';
 
 export default function Home() {
   const [brojMacaka, setBrojMacaka] = useState(12);
   const [brojMackoljubaca, setBrojMackoljubaca] = useState(8);
   const [animatedMacke, setAnimatedMacke] = useState(0);
   const [animatedMackoljupci, setAnimatedMackoljupci] = useState(0);
+
+  const [podaci, setPodaci] = useState([]);
+
+  
+    async function getPodaci() {
+        const odgovor = await MackaService.get();
+        const zaGraf = odgovor.data.map((m) => {
+            return {
+                y: m.brojGlasova,
+                name: m.naziv,
+            };
+        })
+        setPodaci(zaGraf);
+    }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +41,7 @@ export default function Home() {
         console.error('Greška pri dohvaćanju podataka:', error);
       }
     };
-
+    getPodaci()
     fetchData();
   }, []);
 
@@ -49,21 +65,72 @@ export default function Home() {
     }
   }, [animatedMackoljupci, brojMackoljubaca]);
 
+
+  const fixedOptions = {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie',
+        },
+        title: {
+            text: 'Popularnost mačaka',
+            align: 'left',
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+        },
+        accessibility: {
+            enabled: false,
+            point: {
+                valueSuffix: '%',
+            },
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>',
+                },
+            },
+        },
+    };
+
   return (
     <Container>
       <Row className="align-items-center">
         {/* LIJEVA STRANA */}
-        <Col md={6}>
+        <Col md={4}>
           <div style={{ textAlign: 'left' }}>
-            <img src={slika} alt="Mačka" />
+            <img src={slika} alt="Mačka" style={{width: '100%'}} />
           </div>
 
           <p className="lead mt-5 text-start">Dobrodošli na {IME_APLIKACIJE}</p>
         </Col>
 
+        <Col md={4}>
+          {podaci.length > 0 && (
+                    <HighchartsReact
+                        highcharts={Highcharts}
+                        options={{
+                            ...fixedOptions,
+                            series: [
+                                {
+                                    name: 'Polaznici',
+                                    colorByPoint: true,
+                                    data: podaci,
+                                },
+                            ],
+                        }}
+                    />
+                )}
+        </Col>
+
         {/* DESNA STRANA */}
-        <Col md={6}>
-          <div className="d-flex flex-column align-items-end" style={{ width: '100%', gap: '30px' }}>
+        <Col md={4}>
+          <div className="d-flex flex-column align-items-end" style={{ width: '100%', gap: '30px', paddingTop: '1.5rem' }}>
             {/* LORDICONS - GORE DESNO */}
             <div style={{ width: '100%', maxWidth: '400px' }}>
               <Card className="mb-3 shadow-lg border-0 statistikaPanel">
