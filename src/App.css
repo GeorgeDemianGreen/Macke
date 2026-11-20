@@ -126,11 +126,21 @@ body{
  
 }
 
-.text-start {
+.text-center {
   color: white;
-  background: linear-gradient(135deg, #ea66c9 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #faaed1 0%, #e9317e 170%);
   text-align: center;
+  font-size: 35px;
   border-radius: 10px;
   font-weight: bold
+
+}
+
+.card-body {
+
+    background: linear-gradient(85deg, #faaed1 0%, #e9317e 170%);
+
+    border-radius: 6px;
+
 
 }

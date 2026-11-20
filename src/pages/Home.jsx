@@ -74,11 +74,16 @@ export default function Home() {
       plotBackgroundColor: null,
       plotBorderWidth: null,
       plotShadow: false,
-      type: 'pie',
+      type: 'pie'
+      
     },
     title: {
       text: 'Popularnost mačaka',
       align: 'left',
+       style: {
+        color: '#ffffff',
+        textOutline: '2px #FF69B4'
+    }
     },
     tooltip: {
       pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
@@ -95,6 +100,10 @@ export default function Home() {
         cursor: 'pointer',
         dataLabels: {
           enabled: true,
+           style: {
+                color: '#ffffff',
+                textOutline: '2px #FF69B4'
+            },
           format: '<b>{point.name}</b>',
         },
       },
@@ -102,8 +111,8 @@ export default function Home() {
   };
 
   const boje = [
-    '#e6194B', '#3cb44b', '#ffe119', '#4363d8', '#f58231',
-    '#911eb4', '#42d4f4', '#f032e6', '#bfef45', '#fabed4'
+    '#F4C2C2', '#FFD1DC', '#DE9898', '#FFB7D5', '#F2C4CE',
+    '#F7A8B8', '#DCAEAE', '#FF69B4', '#FFC1CC', '#E75480'
 ];
 
   return (
@@ -115,7 +124,7 @@ export default function Home() {
             <img src={slika} alt="Mačka" style={{ width: '100%' }} />
           </div>
 
-          <p className="lead mt-5 text-start">Dobrodošli na {IME_APLIKACIJE}</p>
+          <p className="lead mt-5 text-center">Dobrodošli na {IME_APLIKACIJE}</p>
         </Col>
 
         <Col md={4}>
@@ -150,7 +159,7 @@ export default function Home() {
             <div style={{ width: '100%', maxWidth: '400px' }}>
               <Card className="mb-3 shadow-lg border-0 statistikaPanel">
                 <Card.Body className="text-center">
-                  <p className="text-black">Mačke</p>
+                  <p className="text-white">Mačke</p>
 
                   <div className="statistikaTekst">
                     <LordIcon src="/lordicon/manekineko.json" trigger="hover" />
@@ -162,12 +171,12 @@ export default function Home() {
 
               <Card className="mb-3 shadow-lg border-0 statistikaPanel">
                 <Card.Body className="text-center">
-                  <p className="text-black">Mačkoljupci</p>
+                  <p className="text-white">Mačkoljupci</p>
 
                   <div className="statistikaTekst">
-                    <LordIcon style={{ width: 80, height: 80 }} src="/lordicon/polaznik.json" trigger="hover" />
+                    <LordIcon style={{ width: 80, height: 80 }} src="/lordicon/manekineko.json" trigger="hover" />
                     {animatedMackoljupci}
-                    <LordIcon style={{ width: 80, height: 80 }} src="/lordicon/polaznik.json" trigger="hover" />
+                    <LordIcon style={{ width: 80, height: 80 }} src="/lordicon/manekineko.json" trigger="hover" />
                   </div>
                 </Card.Body>
               </Card>
