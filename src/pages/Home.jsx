@@ -7,7 +7,7 @@ import { LordIcon } from '@lordicon/react';
 import MackaService from '../services/macke/MackaService';
 import MackoljupciService from '../services/mackoljupci/MackoljupciService';
 import Highcharts from 'highcharts';
-import {HighchartsReact} from 'highcharts-react-official';
+import { HighchartsReact } from 'highcharts-react-official';
 
 export default function Home() {
   const [brojMacaka, setBrojMacaka] = useState(12);
@@ -16,18 +16,19 @@ export default function Home() {
   const [animatedMackoljupci, setAnimatedMackoljupci] = useState(0);
 
   const [podaci, setPodaci] = useState([]);
+  const [prikaziGraf, setPrikaziGraf] = useState(false)
 
-  
-    async function getPodaci() {
-        const odgovor = await MackaService.get();
-        const zaGraf = odgovor.data.map((m) => {
-            return {
-                y: m.brojGlasova,
-                name: m.naziv,
-            };
-        })
-        setPodaci(zaGraf);
-    }
+
+  async function getPodaci() {
+    const odgovor = await MackaService.get();
+    const zaGraf = odgovor.data.map((m) => {
+      return {
+        y: m.brojGlasova,
+        name: m.naziv,
+      };
+    })
+    setPodaci(zaGraf);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,9 +50,11 @@ export default function Home() {
     if (animatedMacke < brojMacaka) {
       const timer = setTimeout(() => {
         setAnimatedMacke((prev) => Math.min(prev + 1, brojMacaka));
-      }, 300);
+      }, 100);
 
       return () => clearTimeout(timer);
+    }else{
+      setPrikaziGraf(true)
     }
   }, [animatedMacke, brojMacaka]);
 
@@ -67,65 +70,77 @@ export default function Home() {
 
 
   const fixedOptions = {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie',
+    chart: {
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie',
+    },
+    title: {
+      text: 'Popularnost mačaka',
+      align: 'left',
+    },
+    tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+    },
+    accessibility: {
+      enabled: false,
+      point: {
+        valueSuffix: '%',
+      },
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: true,
+          format: '<b>{point.name}</b>',
         },
-        title: {
-            text: 'Popularnost mačaka',
-            align: 'left',
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
-        },
-        accessibility: {
-            enabled: false,
-            point: {
-                valueSuffix: '%',
-            },
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>',
-                },
-            },
-        },
-    };
+      },
+    },
+  };
+
+  const boje = [
+    '#e6194B', '#3cb44b', '#ffe119', '#4363d8', '#f58231',
+    '#911eb4', '#42d4f4', '#f032e6', '#bfef45', '#fabed4'
+];
 
   return (
     <Container>
-      <Row className="align-items-center">
+      <Row>
         {/* LIJEVA STRANA */}
         <Col md={4}>
           <div style={{ textAlign: 'left' }}>
-            <img src={slika} alt="Mačka" style={{width: '100%'}} />
+            <img src={slika} alt="Mačka" style={{ width: '100%' }} />
           </div>
 
           <p className="lead mt-5 text-start">Dobrodošli na {IME_APLIKACIJE}</p>
         </Col>
 
         <Col md={4}>
-          {podaci.length > 0 && (
-                    <HighchartsReact
-                        highcharts={Highcharts}
-                        options={{
-                            ...fixedOptions,
-                            series: [
-                                {
-                                    name: 'Polaznici',
-                                    colorByPoint: true,
-                                    data: podaci,
-                                },
-                            ],
-                        }}
-                    />
-                )}
+          {prikaziGraf && podaci.length > 0 && (
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={{
+                ...fixedOptions,
+                chart: {
+                  ...fixedOptions?.chart,
+                  backgroundColor: '#faaed1', 
+                },
+                series: [
+                  {
+                    name: 'Polaznici',
+                    colorByPoint: true,
+                    data: podaci.map((stavka, indeks) => ({
+                    ...stavka,
+                    color: boje[indeks % boje.length], // dodjeljuje boju po indeksu
+                })),
+                  },
+                ],
+              }}
+            />
+          )}
         </Col>
 
         {/* DESNA STRANA */}
@@ -160,7 +175,7 @@ export default function Home() {
 
             {/* LOTTIE - DOLJE DESNO */}
             <div style={{ width: '100%', maxWidth: '400px', height: '300px' }}>
-              <DotLottieReact
+               <DotLottieReact
                 src="/lordicon/catfishing.lottie"
                 loop
                 autoplay
@@ -168,7 +183,7 @@ export default function Home() {
                   width: '100%',
                   height: '100%',
                 }}
-              />
+              /> 
             </div>
           </div>
         </Col>
